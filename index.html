@@ -533,7 +533,6 @@
       position: relative;
       transform-style: preserve-3d;
       cursor: grab;
-      /* ruch sterowany JS-em (auto + mysz) */
     }
 
     .faem-3d-orbit.paused .faem-3d-ring,
@@ -1137,7 +1136,7 @@
       margin-bottom: 6px;
     }
 
-    /* TABELA WYNIKÓW */
+    /* Tabela wyników */
     .faem-results-table-wrapper {
       margin-top: 8px;
       border-radius: 14px;
@@ -1235,7 +1234,7 @@
       }
     }
 
-    /* PODKREŚLENIE NAGŁÓWKÓW SEKcji */
+    /* Podkreślenie nagłówków sekcji */
     .faem-section-title::after {
       content: "";
       display: block;
@@ -1734,22 +1733,22 @@
 
       </section>
 
-      <!-- Monografia -->
+      <!-- Monografia (PDF) -->
       <section class="faem-section" id="downloads">
         <div class="faem-section-header">
           <h2 class="faem-section-title">Monografia FAEM – pełny tekst</h2>
           <div class="faem-section-tag">Full Text • PL + EN</div>
         </div>
         <p>
-          Po kliknięciu poniżej otworzysz <strong>pełną monografię</strong> w osobnej karcie – w formacie PDF
-          (wersja gotowa do druku / wysyłki). Dodatkowo możesz zobaczyć
-          <strong>skrótowy podgląd</strong> bez wychodzenia z tej strony.
+          Po kliknięciu poniżej otworzysz <strong>pełną monografię</strong> w osobnej karcie – tym razem w formacie
+          <strong>PDF</strong>. Pliki są hostowane w tym samym repozytorium (GitHub Pages), więc ładują się bezpośrednio
+          z Twojej domeny.
         </p>
         <div class="faem-download-box">
           <p>
-            Upewnij się, że w tym samym folderze co ten plik znajdują się:
-            <br />• <code>gotowy1.pdf</code>
-            <br />• <code>gotowy3_4_en.pdf</code>
+            Upewnij się, że w tym samym folderze co ten plik (<code>index.html</code>) znajdują się:
+            <br />• <code>gotowy1.pdf</code> – wersja polska
+            <br />• <code>gotowy3_4_en.pdf</code> – wersja angielska
           </p>
           <div class="faem-monografia-links">
             <a class="faem-monografia-link" href="gotowy1.pdf" target="_blank" rel="noopener">
@@ -1774,9 +1773,8 @@
             <li><strong>Aneks</strong> – definicje matematyczne, szczegóły algorytmów, dodatkowe wykresy β.</li>
           </ol>
           <p style="margin-top:6px;font-size:12px;">
-            Jeśli po kliknięciu widzisz stronę z błędem lub reklamą, oznacza to, że plik jest uruchomiony z obcego serwisu
-            (np. edytor online), który nie ma dostępu do Twoich plików monografii. Otwórz ten plik z dysku lokalnego
-            lub z własnego hostingu (np. GitHub Pages), razem z monografią PL/EN w tym samym folderze.
+            Jeśli po kliknięciu widzisz błąd 404, oznacza to, że brakuje plików <code>gotowy1.pdf</code> i/lub
+            <code>gotowy3_4_en.pdf</code> w tym samym katalogu, w którym jest <code>index.html</code>.
           </p>
         </div>
 
@@ -1806,8 +1804,8 @@
             jako kandydaturę na uniwersalne prawo skalujące dla układów falowych.
           </p>
           <p style="font-size:12px;opacity:0.8;">
-            To jedynie fragment. Pełny tekst (rozdziały 1–7 oraz aneks) znajduje się w monografii PDF
-            <em>gotowy1.pdf</em> (PL) i <em>gotowy3_4_en.pdf</em> (EN).
+            To jedynie fragment. Pełny tekst znajduje się w monografii PDF <em>gotowy1.pdf</em> (wersja polska)
+            oraz <em>gotowy3_4_en.pdf</em> (wersja angielska).
           </p>
         </div>
       </section>
