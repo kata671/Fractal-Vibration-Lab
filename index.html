@@ -1136,7 +1136,7 @@
       margin-bottom: 6px;
     }
 
-    /* Tabela wyników */
+    /* TABELA WYNIKÓW */
     .faem-results-table-wrapper {
       margin-top: 8px;
       border-radius: 14px;
@@ -1234,7 +1234,7 @@
       }
     }
 
-    /* Podkreślenie nagłówków sekcji */
+    /* PODKREŚLENIE NAGŁÓWKÓW SEKcji */
     .faem-section-title::after {
       content: "";
       display: block;
@@ -1733,31 +1733,50 @@
 
       </section>
 
-      <!-- Monografia (PDF) -->
+      <!-- Monografia -->
       <section class="faem-section" id="downloads">
         <div class="faem-section-header">
           <h2 class="faem-section-title">Monografia FAEM – pełny tekst</h2>
           <div class="faem-section-tag">Full Text • PL + EN</div>
         </div>
         <p>
-          Po kliknięciu poniżej otworzysz <strong>pełną monografię</strong> w osobnej karcie – tym razem w formacie
-          <strong>PDF</strong>. Pliki są hostowane w tym samym repozytorium (GitHub Pages), więc ładują się bezpośrednio
-          z Twojej domeny.
+          Po kliknięciu poniżej otworzysz <strong>pełną monografię</strong> w osobnej karcie – bez PDF,
+          w formacie HTML (jak artykuł konferencyjny online). Dodatkowo możesz zobaczyć
+          <strong>skrótowy podgląd</strong> bez wychodzenia z tej strony.
         </p>
         <div class="faem-download-box">
           <p>
-            Upewnij się, że w tym samym folderze co ten plik (<code>index.html</code>) znajdują się:
-            <br />• <code>gotowy1.pdf</code> – wersja polska
-            <br />• <code>gotowy3_4_en.pdf</code> – wersja angielska
+            Upewnij się, że w tym samym folderze co ten plik znajdują się:
+            <br />• <code>Od_atomu_do_planet_Prawo_Beta_FULL_PL_DARK.html</code>
+            <br />• <code>From_atom_to_planets_BetaLaw_FULL_EN_DARK.html</code>
           </p>
           <div class="faem-monografia-links">
-            <a class="faem-monografia-link" href="gotowy1.pdf" target="_blank" rel="noopener">
-              🇵🇱 Otwórz monografię PL (PDF)
+            <a class="faem-monografia-link" href="Od_atomu_do_planet_Prawo_Beta_FULL_PL_DARK.html" target="_blank" rel="noopener">
+              🇵🇱 Otwórz monografię PL (pełny tekst)
             </a>
-            <a class="faem-monografia-link" href="gotowy3_4_en.pdf" target="_blank" rel="noopener">
-              🇬🇧 Open monograph EN (PDF)
+            <a class="faem-monografia-link" href="From_atom_to_planets_BetaLaw_FULL_EN_DARK.html" target="_blank" rel="noopener">
+              🇬🇧 Open monograph EN (full text)
             </a>
           </div>
+        </div>
+
+        <!-- NOWY BLOK: ZENODO / DOI -->
+        <div class="faem-download-box">
+          <p>
+            Preprint FAEM 2.3 jest również dostępny jako wersja <strong>cytowalna</strong> w repozytorium
+            <strong>Zenodo</strong>:
+          </p>
+          <p style="font-size:13px;">
+            DOI: <code>10.5281/zenodo.17635753</code><br />
+            Link: <a href="https://doi.org/10.5281/zenodo.17635753" target="_blank" rel="noopener">
+              https://doi.org/10.5281/zenodo.17635753
+            </a>
+          </p>
+          <p style="font-size:12px;opacity:0.85;">
+            Propozycja cytowania:<br />
+            Astro_Katt. (2025). <em>From Atom to Planets: The Fractal Energy Scaling β-Law (FAEM 2.3)</em>. Zenodo.
+            https://doi.org/10.5281/zenodo.17635753
+          </p>
         </div>
 
         <div class="faem-monografia-outline">
@@ -1773,8 +1792,9 @@
             <li><strong>Aneks</strong> – definicje matematyczne, szczegóły algorytmów, dodatkowe wykresy β.</li>
           </ol>
           <p style="margin-top:6px;font-size:12px;">
-            Jeśli po kliknięciu widzisz błąd 404, oznacza to, że brakuje plików <code>gotowy1.pdf</code> i/lub
-            <code>gotowy3_4_en.pdf</code> w tym samym katalogu, w którym jest <code>index.html</code>.
+            Jeśli po kliknięciu widzisz stronę z błędem lub reklamą, oznacza to, że plik jest uruchomiony z obcego serwisu
+            (np. edytor online), który nie ma dostępu do Twoich plików monografii. Otwórz ten plik z dysku lokalnego
+            lub z własnego hostingu (np. GitHub Pages), razem z monografią PL/EN w tym samym folderze.
           </p>
         </div>
 
@@ -1804,8 +1824,8 @@
             jako kandydaturę na uniwersalne prawo skalujące dla układów falowych.
           </p>
           <p style="font-size:12px;opacity:0.8;">
-            To jedynie fragment. Pełny tekst znajduje się w monografii PDF <em>gotowy1.pdf</em> (wersja polska)
-            oraz <em>gotowy3_4_en.pdf</em> (wersja angielska).
+            To jedynie fragment. Pełny tekst (rozdziały 1–7 oraz aneks) znajduje się w monografii HTML
+            <em>Od_atomu_do_planet_Prawo_Beta_FULL_PL_DARK.html</em>.
           </p>
         </div>
       </section>
@@ -1926,10 +1946,10 @@
 
     // ROTACJA – auto + myszka + zoom
     let rotationOn = true;
-    let orbitAngle = 0;      // obrót wokół Z (auto)
-    let baseRotX = 22;       // bazowy obrót X
-    let baseRotY = -18;      // bazowy obrót Y
-    let scaleOrbit = 1.0;    // zoom
+    let orbitAngle = 0;
+    let baseRotX = 22;
+    let baseRotY = -18;
+    let scaleOrbit = 1.0;
 
     function applyOrbitTransform() {
       if (!orbit) return;
@@ -1942,7 +1962,7 @@
 
     function animateOrbit() {
       if (rotationOn) {
-        orbitAngle += 0.25; // prędkość auto-rotacji
+        orbitAngle += 0.25;
       }
       applyOrbitTransform();
       requestAnimationFrame(animateOrbit);
@@ -1979,9 +1999,8 @@
       lastX = e.clientX;
       lastY = e.clientY;
 
-      // czułość obracania
-      baseRotY += dx * 0.2;   // poziomy ruch → obrót wokół Y
-      baseRotX -= dy * 0.2;   // pionowy ruch → obrót wokół X
+      baseRotY += dx * 0.2;
+      baseRotX -= dy * 0.2;
 
       applyOrbitTransform();
     }
@@ -1991,12 +2010,10 @@
       orbit.style.cursor = 'grab';
     }
 
-    // Mysza
     orbit.addEventListener('mousedown', onPointerDown);
     window.addEventListener('mousemove', onPointerMove);
     window.addEventListener('mouseup', onPointerUp);
 
-    // Dotyk
     orbit.addEventListener('touchstart', (e) => {
       const t = e.touches[0];
       onPointerDown({ clientX: t.clientX, clientY: t.clientY });
@@ -2011,11 +2028,10 @@
     orbit.addEventListener('touchend', onPointerUp);
     orbit.addEventListener('touchcancel', onPointerUp);
 
-    // Zoom scroll kółkiem
     orbit.addEventListener('wheel', (e) => {
       e.preventDefault();
       const delta = e.deltaY;
-      scaleOrbit -= delta * 0.001; // im większe delta, tym większa zmiana
+      scaleOrbit -= delta * 0.001;
       if (scaleOrbit < 0.8) scaleOrbit = 0.8;
       if (scaleOrbit > 1.3) scaleOrbit = 1.3;
       applyOrbitTransform();
@@ -2067,7 +2083,6 @@
         setMode(m);
       });
     });
-    // stan startowy Mode Explorer
     setMode(1);
 
     // Podgląd monografii
