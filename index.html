@@ -533,6 +533,7 @@
       position: relative;
       transform-style: preserve-3d;
       cursor: grab;
+      /* ruch sterowany JS-em (auto + mysz) */
     }
 
     .faem-3d-orbit.paused .faem-3d-ring,
@@ -1740,22 +1741,22 @@
           <div class="faem-section-tag">Full Text • PL + EN</div>
         </div>
         <p>
-          Po kliknięciu poniżej otworzysz <strong>pełną monografię</strong> w osobnej karcie – bez PDF,
-          w formacie HTML (jak artykuł konferencyjny online). Dodatkowo możesz zobaczyć
+          Po kliknięciu poniżej otworzysz <strong>pełną monografię</strong> w osobnej karcie – w formacie PDF
+          (wersja gotowa do druku / wysyłki). Dodatkowo możesz zobaczyć
           <strong>skrótowy podgląd</strong> bez wychodzenia z tej strony.
         </p>
         <div class="faem-download-box">
           <p>
             Upewnij się, że w tym samym folderze co ten plik znajdują się:
-            <br />• <code>Od_atomu_do_planet_Prawo_Beta_FULL_PL_DARK.html</code>
-            <br />• <code>From_atom_to_planets_BetaLaw_FULL_EN_DARK.html</code>
+            <br />• <code>gotowy1.pdf</code>
+            <br />• <code>gotowy3_4_en.pdf</code>
           </p>
           <div class="faem-monografia-links">
-            <a class="faem-monografia-link" href="Od_atomu_do_planet_Prawo_Beta_FULL_PL_DARK.html" target="_blank" rel="noopener">
-              🇵🇱 Otwórz monografię PL (pełny tekst)
+            <a class="faem-monografia-link" href="gotowy1.pdf" target="_blank" rel="noopener">
+              🇵🇱 Otwórz monografię PL (PDF)
             </a>
-            <a class="faem-monografia-link" href="From_atom_to_planets_BetaLaw_FULL_EN_DARK.html" target="_blank" rel="noopener">
-              🇬🇧 Open monograph EN (full text)
+            <a class="faem-monografia-link" href="gotowy3_4_en.pdf" target="_blank" rel="noopener">
+              🇬🇧 Open monograph EN (PDF)
             </a>
           </div>
         </div>
@@ -1772,39 +1773,6 @@
             <li><strong>Wnioski</strong> – podsumowanie i kierunki dalszych badań (FAEM 3D, eksperymenty THz / cymatyka).</li>
             <li><strong>Aneks</strong> – definicje matematyczne, szczegóły algorytmów, dodatkowe wykresy β.</li>
           </ol>
-
-          <!-- NOWA CZĘŚĆ: SKRÓTOWA BIBLIOGRAFIA -->
-          <h3 style="margin-top:10px;">Podstawowa literatura (skrót)</h3>
-          <ul style="margin-top:4px;padding-left:18px;">
-            <li>
-              B. B. Mandelbrot, <em>The Fractal Geometry of Nature</em>, W.H. Freeman, 1982 –
-              klasyczne wprowadzenie do geometrii fraktalnej i wymiaru D<sub>f</sub>.
-            </li>
-            <li>
-              H. Jenny, <em>Cymatics: A Study of Wave Phenomena and Vibration</em>, 1967/2001 –
-              obserwacje wzorów cymatycznych generowanych przez drgania akustyczne.
-            </li>
-            <li>
-              L. Nottale, <em>Scale Relativity and Fractal Space-Time</em>, Imperial College Press, 2011 –
-              koncepcja relatywności skali i fraktalnych trajektorii w fizyce.
-            </li>
-            <li>
-              K. Falconer, <em>Fractal Geometry: Mathematical Foundations and Applications</em>, Wiley, 3rd ed., 2014 –
-              formalne podstawy wymiaru fraktalnego i metod box-counting.
-            </li>
-            <li>
-              Prace przeglądowe nt. zastosowań wymiaru fraktalnego w analizie obrazów
-              (materiały porowate, tkanki biologiczne, struktury planetarne) – m.in. artykuły w
-              czasopismach z zakresu fizyki statystycznej, geofizyki i biofizyki obrazowej.
-            </li>
-          </ul>
-
-          <p style="margin-top:6px;font-size:12px;">
-            Pełna, rozwinięta bibliografia oraz szczegółowe odwołania do literatury mogą zostać
-            dodane w kolejnej wersji monografii FAEM 2.3 (np. release 1.1) – powyższa lista
-            wskazuje główne źródła inspiracji teoretycznej i metodologicznej.
-          </p>
-
           <p style="margin-top:6px;font-size:12px;">
             Jeśli po kliknięciu widzisz stronę z błędem lub reklamą, oznacza to, że plik jest uruchomiony z obcego serwisu
             (np. edytor online), który nie ma dostępu do Twoich plików monografii. Otwórz ten plik z dysku lokalnego
@@ -1838,8 +1806,8 @@
             jako kandydaturę na uniwersalne prawo skalujące dla układów falowych.
           </p>
           <p style="font-size:12px;opacity:0.8;">
-            To jedynie fragment. Pełny tekst (rozdziały 1–7 oraz aneks) znajduje się w monografii HTML
-            <em>Od_atomu_do_planet_Prawo_Beta_FULL_PL_DARK.html</em>.
+            To jedynie fragment. Pełny tekst (rozdziały 1–7 oraz aneks) znajduje się w monografii PDF
+            <em>gotowy1.pdf</em> (PL) i <em>gotowy3_4_en.pdf</em> (EN).
           </p>
         </div>
       </section>
@@ -2013,8 +1981,9 @@
       lastX = e.clientX;
       lastY = e.clientY;
 
-      baseRotY += dx * 0.2;
-      baseRotX -= dy * 0.2;
+      // czułość obracania
+      baseRotY += dx * 0.2;   // poziomy ruch → obrót wokół Y
+      baseRotX -= dy * 0.2;   // pionowy ruch → obrót wokół X
 
       applyOrbitTransform();
     }
@@ -2048,7 +2017,7 @@
     orbit.addEventListener('wheel', (e) => {
       e.preventDefault();
       const delta = e.deltaY;
-      scaleOrbit -= delta * 0.001;
+      scaleOrbit -= delta * 0.001; // im większe delta, tym większa zmiana
       if (scaleOrbit < 0.8) scaleOrbit = 0.8;
       if (scaleOrbit > 1.3) scaleOrbit = 1.3;
       applyOrbitTransform();
