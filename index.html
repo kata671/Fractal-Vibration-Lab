@@ -1740,43 +1740,30 @@
           <div class="faem-section-tag">Full Text • PL + EN</div>
         </div>
         <p>
-          Po kliknięciu poniżej otworzysz <strong>pełną monografię</strong> w osobnej karcie – bez PDF,
-          w formacie HTML (jak artykuł konferencyjny online). Dodatkowo możesz zobaczyć
-          <strong>skrótowy podgląd</strong> bez wychodzenia z tej strony.
+          Poniżej znajdziesz <strong>pełną monografię</strong> FAEM 2.3:
+          w wersji HTML (PL/EN) hostowanej na GitHub Pages oraz jako preprint PDF w repozytorium Zenodo (z DOI).
         </p>
         <div class="faem-download-box">
           <p>
-            Upewnij się, że w tym samym folderze co ten plik znajdują się:
-            <br />• <code>Od_atomu_do_planet_Prawo_Beta_FULL_PL_DARK.html</code>
-            <br />• <code>From_atom_to_planets_BetaLaw_FULL_EN_DARK.html</code>
+            Wersje online i preprint:
           </p>
           <div class="faem-monografia-links">
-            <a class="faem-monografia-link" href="Od_atomu_do_planet_Prawo_Beta_FULL_PL_DARK.html" target="_blank" rel="noopener">
-              🇵🇱 Otwórz monografię PL (pełny tekst)
+            <a class="faem-monografia-link"
+               href="Od_atomu_do_planet_Prawo_Beta_FULL_PL_DARK.html"
+               target="_blank" rel="noopener">
+              🇵🇱 Otwórz monografię PL (HTML)
             </a>
-            <a class="faem-monografia-link" href="From_atom_to_planets_BetaLaw_FULL_EN_DARK.html" target="_blank" rel="noopener">
-              🇬🇧 Open monograph EN (full text)
+            <a class="faem-monografia-link"
+               href="From_atom_to_planets_BetaLaw_FULL_EN_DARK.html"
+               target="_blank" rel="noopener">
+              🇬🇧 Open monograph EN (HTML)
+            </a>
+            <a class="faem-monografia-link"
+               href="https://doi.org/10.5281/zenodo.17635753"
+               target="_blank" rel="noopener">
+              🔗 Preprint PDF (Zenodo, DOI)
             </a>
           </div>
-        </div>
-
-        <!-- NOWY BLOK: ZENODO / DOI -->
-        <div class="faem-download-box">
-          <p>
-            Preprint FAEM 2.3 jest również dostępny jako wersja <strong>cytowalna</strong> w repozytorium
-            <strong>Zenodo</strong>:
-          </p>
-          <p style="font-size:13px;">
-            DOI: <code>10.5281/zenodo.17635753</code><br />
-            Link: <a href="https://doi.org/10.5281/zenodo.17635753" target="_blank" rel="noopener">
-              https://doi.org/10.5281/zenodo.17635753
-            </a>
-          </p>
-          <p style="font-size:12px;opacity:0.85;">
-            Propozycja cytowania:<br />
-            Astro_Katt. (2025). <em>From Atom to Planets: The Fractal Energy Scaling β-Law (FAEM 2.3)</em>. Zenodo.
-            https://doi.org/10.5281/zenodo.17635753
-          </p>
         </div>
 
         <div class="faem-monografia-outline">
@@ -1792,9 +1779,8 @@
             <li><strong>Aneks</strong> – definicje matematyczne, szczegóły algorytmów, dodatkowe wykresy β.</li>
           </ol>
           <p style="margin-top:6px;font-size:12px;">
-            Jeśli po kliknięciu widzisz stronę z błędem lub reklamą, oznacza to, że plik jest uruchomiony z obcego serwisu
-            (np. edytor online), który nie ma dostępu do Twoich plików monografii. Otwórz ten plik z dysku lokalnego
-            lub z własnego hostingu (np. GitHub Pages), razem z monografią PL/EN w tym samym folderze.
+            Wersje HTML są optymalne do czytania online, a wersja PDF z Zenodo jest przeznaczona do cytowania
+            i archiwizacji (stabilny DOI).
           </p>
         </div>
 
@@ -2010,10 +1996,12 @@
       orbit.style.cursor = 'grab';
     }
 
+    // Mysza
     orbit.addEventListener('mousedown', onPointerDown);
     window.addEventListener('mousemove', onPointerMove);
     window.addEventListener('mouseup', onPointerUp);
 
+    // Dotyk
     orbit.addEventListener('touchstart', (e) => {
       const t = e.touches[0];
       onPointerDown({ clientX: t.clientX, clientY: t.clientY });
@@ -2028,6 +2016,7 @@
     orbit.addEventListener('touchend', onPointerUp);
     orbit.addEventListener('touchcancel', onPointerUp);
 
+    // Zoom scroll kółkiem
     orbit.addEventListener('wheel', (e) => {
       e.preventDefault();
       const delta = e.deltaY;
@@ -2083,6 +2072,7 @@
         setMode(m);
       });
     });
+    // stan startowy Mode Explorer
     setMode(1);
 
     // Podgląd monografii
