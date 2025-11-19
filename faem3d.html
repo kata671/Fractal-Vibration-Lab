@@ -1,0 +1,1239 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <title>FAEM 3D – Atlas fraktalnych energii materii | Prawo β</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content="FAEM 3D – interaktywny atlas fraktalnych energii materii: mikro, mezo, makro. Wizualizacja Prawa β od atomu do planet."
+  />
+
+  <style>
+    :root {
+      --bg-main: #0c0930;
+      --bg-card: rgba(26, 18, 80, 0.96);
+      --bg-accent: #26165c;
+      --accent: #b38cff;
+      --accent-soft: #a28bff;
+      --accent-strong: #ff8de1;
+      --accent-micro: #ffb8fa;
+      --accent-mezo: #93e3ff;
+      --accent-macro: #c6b1ff;
+      --text-main: #faf7ff;
+      --text-muted: #d3cdf2;
+      --border-soft: rgba(255, 255, 255, 0.12);
+      --shadow-soft: 0 20px 45px rgba(0, 0, 0, 0.8);
+      --radius-xl: 24px;
+      --radius-pill: 999px;
+      --transition-fast: 0.2s ease-out;
+      --gradient-hero: radial-gradient(circle at top left, #6f51ff 0, transparent 55%),
+                       radial-gradient(circle at bottom right, #ff75e6 0, transparent 60%),
+                       linear-gradient(145deg, #0c0930 0, #170d40 40%, #060316 100%);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      height: 100%;
+      background: radial-gradient(circle at top, #3c256f 0, #0c0930 55%);
+      color: var(--text-main);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Inter", "Roboto", sans-serif;
+      scroll-behavior: smooth;
+      font-size: 15px;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .faem-page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    .faem-particles {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.45;
+      background-image:
+        radial-gradient(2px 2px at 10% 20%, rgba(255,255,255,0.35) 0, transparent 60%),
+        radial-gradient(2px 2px at 80% 80%, rgba(179,140,255,0.40) 0, transparent 60%),
+        radial-gradient(3px 3px at 35% 65%, rgba(255,141,225,0.35) 0, transparent 60%),
+        radial-gradient(1.5px 1.5px at 88% 30%, rgba(147,227,255,0.45) 0, transparent 60%);
+      z-index: 0;
+    }
+
+    .faem-shell {
+      position: relative;
+      z-index: 1;
+      max-width: 1120px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 84px 18px 40px;
+    }
+
+    /* HEADER */
+
+    .faem-header-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 10;
+      backdrop-filter: blur(16px);
+      background: linear-gradient(to bottom, rgba(5,3,24,0.95), rgba(5,3,24,0.85), transparent);
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+
+    header.faem-header {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 10px 18px 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .faem-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .faem-logo-mark {
+      width: 40px;
+      height: 40px;
+      border-radius: 18px;
+      background: conic-gradient(from 210deg, #ff8de1, #b38cff, #93e3ff, #ff8de1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 16px rgba(179,140,255,0.8);
+      font-weight: 700;
+      font-size: 24px;
+      color: #07061a;
+    }
+
+    .faem-logo-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .faem-logo-text span:first-child {
+      font-size: 13px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .faem-logo-text span:last-child {
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    nav.faem-nav {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      align-items: center;
+    }
+
+    .faem-nav-links {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .faem-nav-link {
+      font-size: 12px;
+      color: var(--text-muted);
+      text-decoration: none;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      background: transparent;
+      transition: background var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
+      white-space: nowrap;
+    }
+
+    .faem-nav-link:hover {
+      border-color: rgba(255,255,255,0.2);
+      background: rgba(38,24,110,0.9);
+      color: var(--text-main);
+    }
+
+    .faem-chip {
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--border-soft);
+      padding: 6px 12px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--text-muted);
+      background: linear-gradient(120deg, rgba(179,140,255,0.16), rgba(9,6,30,0.8));
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+    }
+
+    .faem-chip strong {
+      color: var(--accent-soft);
+      font-weight: 600;
+    }
+
+    /* HERO / INTRO */
+
+    .faem-main-card {
+      background: var(--gradient-hero);
+      border-radius: 30px;
+      border: 1px solid rgba(255,255,255,0.16);
+      padding: 26px 20px 30px;
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 24px;
+      scroll-margin-top: 90px;
+    }
+
+    .faem-main-card::before {
+      content: "";
+      position: absolute;
+      inset: -30%;
+      background:
+        radial-gradient(circle at 12% 0%, rgba(255,141,225,0.26) 0, transparent 60%),
+        radial-gradient(circle at 86% 100%, rgba(147,227,255,0.23) 0, transparent 60%);
+      opacity: 0.6;
+      pointer-events: none;
+    }
+
+    .faem-main-inner {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.1fr);
+      gap: 20px;
+      align-items: center;
+    }
+
+    @media (max-width: 860px) {
+      .faem-main-inner {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .faem-kicker {
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .faem-title {
+      font-size: clamp(28px, 4.2vw, 36px);
+      line-height: 1.18;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .faem-title span.beta {
+      color: var(--accent-strong);
+      text-shadow: 0 0 16px rgba(255,141,225,0.8);
+    }
+
+    .faem-subtitle {
+      font-size: 14.5px;
+      color: var(--text-muted);
+      max-width: 540px;
+      margin-bottom: 14px;
+    }
+
+    .faem-badges-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .faem-badge {
+      font-size: 12px;
+      padding: 5px 12px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(255,255,255,0.22);
+      background: rgba(20, 12, 80, 0.94);
+      color: var(--text-muted);
+    }
+
+    .faem-cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      margin-bottom: 4px;
+    }
+
+    .faem-btn-primary,
+    .faem-btn-ghost {
+      border-radius: var(--radius-pill);
+      padding: 9px 18px;
+      border: 1px solid transparent;
+      font-size: 13px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast);
+    }
+
+    .faem-btn-primary {
+      background: linear-gradient(120deg, #b38cff, #ff8de1);
+      color: #07061a;
+      font-weight: 600;
+      box-shadow: 0 10px 32px rgba(179,140,255,0.7);
+    }
+
+    .faem-btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 14px 40px rgba(179,140,255,0.9);
+    }
+
+    .faem-btn-ghost {
+      background: rgba(11, 7, 46, 0.94);
+      border-color: rgba(255,255,255,0.24);
+      color: var(--text-muted);
+    }
+
+    .faem-btn-ghost:hover {
+      background: rgba(25, 17, 80, 0.96);
+      border-color: rgba(255,255,255,0.32);
+      color: var(--text-main);
+    }
+
+    .faem-cta-note {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .faem-hero-orbit {
+      position: relative;
+      min-height: 200px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.23);
+      background:
+        radial-gradient(circle at 30% 0%, rgba(255,141,225,0.23) 0, transparent 60%),
+        radial-gradient(circle at 80% 100%, rgba(147,227,255,0.26) 0, transparent 60%),
+        rgba(12, 7, 50, 0.93);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.9);
+      overflow: hidden;
+    }
+
+    .faem-hero-orbit-inner {
+      position: absolute;
+      inset: 11px 20px;
+      border-radius: inherit;
+      border: 1px solid rgba(179,140,255,0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .faem-hero-orbit-core {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #ff8de1 0, #b38cff 42%, #07061a 100%);
+      box-shadow:
+        0 0 32px rgba(255,141,225,0.9),
+        0 0 64px rgba(179,140,255,0.9);
+      position: relative;
+    }
+
+    .faem-hero-orbit-ring {
+      position: absolute;
+      width: 170px;
+      height: 170px;
+      border-radius: 50%;
+      border: 1px dashed rgba(255,255,255,0.24);
+      animation: faem-spin-orbit 18s linear infinite;
+    }
+
+    .faem-hero-orbit-ring:nth-child(2) {
+      width: 130px;
+      height: 130px;
+      animation-duration: 12s;
+      animation-direction: reverse;
+      border-style: solid;
+      border-color: rgba(147,227,255,0.45);
+    }
+
+    .faem-hero-orbit-ring span {
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #ffffff 0, #93e3ff 45%, #07061a 100%);
+      box-shadow: 0 0 16px rgba(147,227,255,0.85);
+    }
+
+    .faem-hero-orbit-ring span:nth-child(1) { top: -8px; left: 50%; transform: translateX(-50%); }
+    .faem-hero-orbit-ring span:nth-child(2) { bottom: -8px; left: 18%; }
+    .faem-hero-orbit-ring span:nth-child(3) { right: -8px; top: 55%; transform: translateY(-50%); }
+    .faem-hero-orbit-ring span:nth-child(4) { left: -6px; top: 25%; }
+
+    .faem-hero-beta-label {
+      position: absolute;
+      bottom: 12px;
+      right: 16px;
+      font-size: 11px;
+      color: var(--text-muted);
+      background: rgba(5,3,20,0.88);
+      padding: 5px 10px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+
+    @keyframes faem-spin-orbit {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+
+    /* SEKCJE */
+
+    .faem-section {
+      background: var(--bg-card);
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border-soft);
+      padding: 18px 18px 20px;
+      margin-bottom: 20px;
+      box-shadow: var(--shadow-soft);
+      scroll-margin-top: 90px;
+      transition: box-shadow 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+    }
+
+    .faem-section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+
+    .faem-section-title {
+      font-size: 17px;
+      font-weight: 600;
+      position: relative;
+      padding-bottom: 4px;
+    }
+
+    .faem-section-tag {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--text-muted);
+    }
+
+    .faem-section p {
+      font-size: 14px;
+      line-height: 1.65;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .faem-section-title::after {
+      content: "";
+      display: block;
+      position: absolute;
+      left: 0;
+      bottom: -2px;
+      width: 80px;
+      height: 2px;
+      border-radius: 3px;
+      background: linear-gradient(90deg, #b38cff, #ff8de1);
+      box-shadow: 0 0 10px rgba(179,140,255,0.6);
+      opacity: 0.85;
+    }
+
+    /* FAEM 3D – GŁÓWNA SCENA */
+
+    .faem3d-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 18px;
+      margin-top: 10px;
+    }
+
+    @media (max-width: 900px) {
+      .faem3d-layout {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .faem3d-stage-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .faem3d-stage {
+      margin-top: 4px;
+      display: flex;
+      justify-content: center;
+      perspective: 1100px;
+      width: 100%;
+    }
+
+    .faem3d-orbit {
+      width: 260px;
+      height: 260px;
+      position: relative;
+      transform-style: preserve-3d;
+      cursor: grab;
+    }
+
+    .faem3d-orbit.paused .faem3d-ring,
+    .faem3d-orbit.paused .faem3d-core {
+      animation-play-state: paused;
+    }
+
+    .faem3d-core {
+      position: absolute;
+      inset: 0;
+      margin: auto;
+      width: 76px;
+      height: 76px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #ff8de1 0, #b38cff 45%, #07061a 100%);
+      box-shadow:
+        0 0 36px rgba(255,141,225,0.9),
+        0 0 74px rgba(179,140,255,0.9);
+      transform: translateZ(32px);
+      animation: faem3d-core-pulse 9s ease-in-out infinite;
+    }
+
+    .faem3d-ring {
+      position: absolute;
+      inset: 0;
+      margin: auto;
+      width: 230px;
+      height: 230px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.28);
+      transform-style: preserve-3d;
+      animation: faem3d-orbit-spin 26s linear infinite;
+      box-shadow: 0 0 0 rgba(0,0,0,0);
+      transition: box-shadow 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .faem3d-ring.meso {
+      width: 190px;
+      height: 190px;
+      border-style: dashed;
+      border-color: rgba(147,227,255,0.7);
+      animation-duration: 18s;
+      animation-direction: reverse;
+      transform: rotateX(22deg) rotateY(-16deg) translateZ(-10px);
+    }
+
+    .faem3d-ring.micro {
+      width: 150px;
+      height: 150px;
+      border-color: rgba(255,184,250,0.7);
+      animation-duration: 12s;
+      transform: rotateX(32deg) rotateY(18deg) translateZ(-25px);
+    }
+
+    .faem3d-ring.macro {
+      border-style: solid;
+      border-color: rgba(198,177,255,0.6);
+      transform: rotateX(16deg) rotateY(-24deg) translateZ(10px);
+    }
+
+    .faem3d-ring .faem3d-node {
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #ffffff 0, #93e3ff 45%, #07061a 100%);
+      box-shadow: 0 0 16px rgba(147,227,255,0.85);
+      transition: box-shadow 0.2s ease, transform 0.2s ease;
+    }
+
+    .faem3d-ring.micro .faem3d-node {
+      background: radial-gradient(circle, #ffffff 0, var(--accent-micro) 45%, #07061a 100%);
+    }
+
+    .faem3d-ring.meso .faem3d-node {
+      background: radial-gradient(circle, #ffffff 0, var(--accent-mezo) 45%, #07061a 100%);
+    }
+
+    .faem3d-ring.macro .faem3d-node {
+      background: radial-gradient(circle, #ffffff 0, var(--accent-macro) 45%, #07061a 100%);
+    }
+
+    .faem3d-ring .faem3d-node:nth-child(1) { top: -8px; left: 50%; transform: translateX(-50%); }
+    .faem3d-ring .faem3d-node:nth-child(2) { bottom: -8px; left: 18%; }
+    .faem3d-ring .faem3d-node:nth-child(3) { right: -8px; top: 55%; transform: translateY(-50%); }
+    .faem3d-ring .faem3d-node:nth-child(4) { left: -6px; top: 25%; }
+
+    .faem3d-ring.faem3d-active.micro {
+      border-color: var(--accent-micro);
+      box-shadow: 0 0 26px rgba(255,184,250,0.8);
+      transform: rotateX(32deg) rotateY(18deg) translateZ(-15px) scale(1.04);
+    }
+
+    .faem3d-ring.faem3d-active.meso {
+      border-color: var(--accent-mezo);
+      box-shadow: 0 0 26px rgba(147,227,255,0.8);
+      transform: rotateX(22deg) rotateY(-16deg) translateZ(0) scale(1.04);
+    }
+
+    .faem3d-ring.faem3d-active.macro {
+      border-color: var(--accent-macro);
+      box-shadow: 0 0 26px rgba(198,177,255,0.8);
+      transform: rotateX(16deg) rotateY(-24deg) translateZ(20px) scale(1.04);
+    }
+
+    .faem3d-ring.faem3d-active .faem3d-node {
+      box-shadow: 0 0 22px rgba(255,255,255,0.95);
+      transform: scale(1.06);
+    }
+
+    .faem3d-labels {
+      margin-top: 4px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      font-size: 11.5px;
+      color: var(--text-muted);
+    }
+
+    .faem3d-label-pill {
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 4px 10px;
+      background: rgba(10,6,40,0.9);
+    }
+
+    .faem3d-controls {
+      margin-top: 8px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .faem3d-btn,
+    .faem3d-rot-btn {
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(255,255,255,0.25);
+      padding: 6px 14px;
+      font-size: 12px;
+      background: rgba(10,6,40,0.9);
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .faem3d-btn:hover,
+    .faem3d-rot-btn:hover {
+      background: rgba(20,12,70,0.96);
+      color: var(--text-main);
+      box-shadow: 0 8px 18px rgba(0,0,0,0.6);
+    }
+
+    .faem3d-btn.faem3d-btn-active {
+      background: linear-gradient(120deg, #b38cff, #ff8de1);
+      border-color: transparent;
+      color: #07061a;
+      font-weight: 600;
+      box-shadow: 0 8px 20px rgba(179,140,255,0.8);
+    }
+
+    .faem3d-rot-btn.faem3d-rot-active {
+      border-color: var(--accent-soft);
+      color: var(--accent-soft);
+    }
+
+    .faem3d-desc-current {
+      margin-top: 6px;
+      font-size: 12.5px;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    @keyframes faem3d-orbit-spin {
+      from { transform: rotateZ(0deg); }
+      to   { transform: rotateZ(360deg); }
+    }
+
+    @keyframes faem3d-core-pulse {
+      0%, 100% { box-shadow: 0 0 36px rgba(255,141,225,0.9), 0 0 74px rgba(179,140,255,0.9); }
+      50%      { box-shadow: 0 0 48px rgba(255,141,225,1), 0 0 90px rgba(179,140,255,1); }
+    }
+
+    /* PANEL DANYCH */
+
+    .faem3d-panel {
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: radial-gradient(circle at top left, rgba(179,140,255,0.22) 0, transparent 55%),
+                  rgba(7,4,30,0.96);
+      padding: 12px 14px;
+      font-size: 13px;
+      color: var(--text-muted);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .faem3d-panel h3 {
+      font-size: 14px;
+      margin-bottom: 4px;
+      color: var(--accent-soft);
+    }
+
+    .faem3d-datarow {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 4px;
+      flex-wrap: wrap;
+      font-size: 12.5px;
+    }
+
+    .faem3d-datarow span {
+      opacity: 0.8;
+    }
+
+    .faem3d-datarow strong {
+      font-weight: 500;
+      color: var(--text-main);
+    }
+
+    .faem3d-betameter {
+      position: relative;
+      flex: 1;
+      min-width: 180px;
+      height: 8px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #4b3b6f, #b38cff, #ff8de1);
+      overflow: hidden;
+      margin-top: 4px;
+    }
+
+    .faem3d-betameter-fill {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: 50%;
+      background: rgba(250,250,255,0.9);
+      border-radius: inherit;
+      box-shadow: 0 0 10px rgba(255,255,255,0.9);
+      transition: width 0.25s ease-out;
+      mix-blend-mode: screen;
+    }
+
+    .faem3d-betameter-label {
+      position: absolute;
+      top: -16px;
+      right: 0;
+      font-size: 11px;
+      color: var(--text-main);
+      text-shadow: 0 0 6px rgba(0,0,0,0.8);
+    }
+
+    .faem3d-note {
+      margin-top: 4px;
+      font-size: 11px;
+      opacity: 0.8;
+      text-align: right;
+    }
+
+    .faem3d-beta-note {
+      font-size: 12px;
+      margin-top: 4px;
+    }
+
+    /* FOOTER */
+
+    footer.faem-footer {
+      margin-top: 18px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(255,255,255,0.09);
+      font-size: 12px;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    a {
+      color: var(--accent-soft);
+    }
+
+    .faem-backtotop {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 20;
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      background: rgba(8,5,30,0.95);
+      border: 1px solid rgba(179,140,255,0.7);
+      color: var(--accent-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 16px;
+      box-shadow: 0 10px 26px rgba(0,0,0,0.85);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+    }
+
+    .faem-backtotop.show {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    .faem-backtotop:hover {
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 600px) {
+      .faem-shell {
+        padding-inline: 14px;
+      }
+      header.faem-header {
+        padding-inline: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="faem-page">
+    <div class="faem-particles"></div>
+
+    <div class="faem-header-bar">
+      <header class="faem-header">
+        <div class="faem-logo">
+          <div class="faem-logo-mark">β</div>
+          <div class="faem-logo-text">
+            <span>FAEM 3D</span>
+            <span>Fractal Energy Atlas</span>
+          </div>
+        </div>
+        <nav class="faem-nav">
+          <div class="faem-nav-links">
+            <a href="#top" class="faem-nav-link">Atlas 3D</a>
+            <a href="index.html" class="faem-nav-link">Strona główna</a>
+            <a href="mailto:fractalvibrationlab@gmail.com" class="faem-nav-link">Kontakt</a>
+          </div>
+          <div class="faem-chip">
+            Lab: <strong>Fractal Vibration Lab</strong>
+          </div>
+        </nav>
+      </header>
+    </div>
+
+    <div class="faem-shell">
+      <div id="top"></div>
+
+      <!-- HERO / INTRO -->
+      <section class="faem-main-card">
+        <div class="faem-main-inner">
+          <div>
+            <div class="faem-kicker">Od atomu do planet • FAEM β-Law</div>
+            <h1 class="faem-title">
+              FAEM 3D – atlas fraktalnych<br />
+              energii materii w Prawie <span class="beta">β</span>
+            </h1>
+            <p class="faem-subtitle">
+              Interaktywna wizualizacja Prawa Fraktalnej Skalowalności Energetycznej. Trzy warstwy – mikro, mezo, makro –
+              pokazują, jak ta sama zależność β łączy widma drganiowe z geometrią wzorców od sieci krystalicznych,
+              przez tkanki, aż po układy planetarne.
+            </p>
+            <div class="faem-badges-row">
+              <span class="faem-badge">β ≈ 0.60 ± 0.10</span>
+              <span class="faem-badge">Mikro ↔ Mezo ↔ Makro</span>
+              <span class="faem-badge">D<sub>f</sub> = A + B·log(P<sub>Δω</sub>)</span>
+            </div>
+            <div class="faem-cta-row">
+              <a href="index.html#downloads" class="faem-btn-ghost">
+                📄 Monografia FAEM 2.3
+              </a>
+              <a href="#faem3d" class="faem-btn-primary">
+                🌌 Otwórz atlas FAEM 3D
+              </a>
+            </div>
+            <div class="faem-cta-note">
+              Projekt koncepcyjny • Astro_Katt – Fractal Vibration Lab • wersja poglądowa (symulacje).
+            </div>
+          </div>
+
+          <div class="faem-hero-orbit">
+            <div class="faem-hero-orbit-inner">
+              <div class="faem-hero-orbit-core"></div>
+
+              <div class="faem-hero-orbit-ring macro">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+              <div class="faem-hero-orbit-ring meso">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+              <div class="faem-hero-orbit-ring micro">
+                <span></span>
+                <span></span>
+              </div>
+
+              <div class="faem-hero-beta-label">
+                Prawo β – Astro_Katt<br />
+                <span style="font-size:10px;">Df = A + B·log(P<sub>Δω</sub>), β = −B</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- GŁÓWNA SEKCJA FAEM 3D -->
+      <section class="faem-section" id="faem3d">
+        <div class="faem-section-header">
+          <h2 class="faem-section-title">Interaktywny atlas FAEM 3D</h2>
+          <div class="faem-section-tag">Mikro • Mezo • Makro</div>
+        </div>
+        <p>
+          Wybierz warstwę, aby zobaczyć, jak Prawo β przejawia się w różnych zakresach skali. Rdzeń reprezentuje źródłową
+          energię falową, a trzy powłoki pokazują kaskadę złożoności: od drgań sieci krystalicznych, przez domeny
+          rezonansowe tkanek, po układy orbitalne.
+        </p>
+
+        <div class="faem3d-layout">
+          <!-- LEWA: SCENA 3D + PRZYCISKI -->
+          <div class="faem3d-stage-wrapper">
+            <div class="faem3d-stage">
+              <div class="faem3d-orbit" id="faem3dOrbit">
+                <div class="faem3d-core"></div>
+
+                <div class="faem3d-ring micro" id="faem3dMicro">
+                  <div class="faem3d-node"></div>
+                  <div class="faem3d-node"></div>
+                </div>
+
+                <div class="faem3d-ring meso" id="faem3dMeso">
+                  <div class="faem3d-node"></div>
+                  <div class="faem3d-node"></div>
+                  <div class="faem3d-node"></div>
+                </div>
+
+                <div class="faem3d-ring macro" id="faem3dMacro">
+                  <div class="faem3d-node"></div>
+                  <div class="faem3d-node"></div>
+                  <div class="faem3d-node"></div>
+                  <div class="faem3d-node"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="faem3d-labels">
+              <div class="faem3d-label-pill">Mikro – molekuły, sieci krystaliczne</div>
+              <div class="faem3d-label-pill">Mezo – domeny rezonansowe, tkanki</div>
+              <div class="faem3d-label-pill">Makro – układy orbitalne, rezonanse</div>
+            </div>
+
+            <div class="faem3d-controls">
+              <button class="faem3d-btn faem3d-btn-active" data-scale="micro">Mikro</button>
+              <button class="faem3d-btn" data-scale="mezo">Mezo</button>
+              <button class="faem3d-btn" data-scale="makro">Makro</button>
+              <button class="faem3d-rot-btn faem3d-rot-active" id="faem3dRotBtn">Obrót ON/OFF</button>
+            </div>
+
+            <p class="faem3d-desc-current" id="faem3dDesc">
+              Mikro: widma molekularne i drgania sieci krystalicznych – lokalne mody, które inicjują kaskadę fraktalną.
+            </p>
+          </div>
+
+          <!-- PRAWA: PANEL DANYCH -->
+          <aside class="faem3d-panel">
+            <h3>Parametry dla wybranej skali</h3>
+
+            <div class="faem3d-datarow">
+              <span>Skala częstotliwości (ω):</span>
+              <strong id="faem3dFreq"></strong>
+            </div>
+            <div class="faem3d-datarow">
+              <span>Przykładowy układ fizyczny:</span>
+              <strong id="faem3dSystem"></strong>
+            </div>
+            <div class="faem3d-datarow">
+              <span>Zakres wymiaru fraktalnego D<sub>f</sub>:</span>
+              <strong id="faem3dDf"></strong>
+            </div>
+
+            <div class="faem3d-datarow" style="flex-direction:column;align-items:flex-start;">
+              <span>β – tempo konwersji energia → geometria (symulacje FAEM 2.3):</span>
+              <div class="faem3d-betameter">
+                <div class="faem3d-betameter-fill" id="faem3dBetaFill"></div>
+                <span class="faem3d-betameter-label" id="faem3dBetaLabel"></span>
+              </div>
+            </div>
+
+            <p class="faem3d-beta-note">
+              β stabilne w przedziale ≈ 0.60 ± 0.10 sugeruje, że ta sama „sprawność kaskady” działa w wielu klasach układów
+              falowych – od materiałów, przez biofizykę, po dynamikę orbitalną.
+            </p>
+
+            <p class="faem3d-note">
+              Wszystkie wartości mają charakter <strong>poglądowy (symulacje numeryczne)</strong> i nie są bezpośrednimi
+              pomiarami laboratoryjnymi.
+            </p>
+          </aside>
+        </div>
+      </section>
+
+      <footer class="faem-footer">
+        <span>© Fractal Vibration Lab — Astro_Katt • FAEM 3D β-Law</span>
+        <span>Kontakt: <a href="mailto:fractalvibrationlab@gmail.com">fractalvibrationlab@gmail.com</a></span>
+      </footer>
+    </div>
+
+    <button class="faem-backtotop" id="faemBackToTop" aria-label="Powrót do góry">
+      ↑
+    </button>
+  </div>
+
+  <script>
+    // Back to top
+    const backBtn = document.getElementById('faemBackToTop');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 200) {
+        backBtn.classList.add('show');
+      } else {
+        backBtn.classList.remove('show');
+      }
+    });
+    backBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // FAEM 3D interakcje
+    const orbit = document.getElementById('faem3dOrbit');
+    const microRing = document.getElementById('faem3dMicro');
+    const mesoRing = document.getElementById('faem3dMeso');
+    const macroRing = document.getElementById('faem3dMacro');
+    const desc = document.getElementById('faem3dDesc');
+    const scaleButtons = document.querySelectorAll('.faem3d-btn');
+    const rotBtn = document.getElementById('faem3dRotBtn');
+
+    const freqEl = document.getElementById('faem3dFreq');
+    const systemEl = document.getElementById('faem3dSystem');
+    const dfEl = document.getElementById('faem3dDf');
+    const betaFill = document.getElementById('faem3dBetaFill');
+    const betaLabel = document.getElementById('faem3dBetaLabel');
+
+    const scaleTexts = {
+      micro: 'Mikro: widma molekularne i drgania sieci krystalicznych – lokalne mody, które inicjują kaskadę fraktalną.',
+      mezo: 'Mezo: domeny rezonansowe i tkanki – struktury pośrednie, gdzie sumują się lokalne mody i pojawia się geometria organizacji.',
+      makro: 'Makro: orbity i układy planetarne – duże skale, gdzie geometryczne skutki sumowania fal stają się globalnym wzorcem.'
+    };
+
+    // Dane orientacyjne z symulacji – nie dane pomiarowe
+    const scaleData = {
+      micro: {
+        freq: '10¹²–10¹⁴ Hz (THz, drgania sieciowe)',
+        system: 'Sieć krystaliczna (np. SiO₂, Al₂O₃)',
+        df: 'Df ≈ 1.30–1.60',
+        beta: 0.58
+      },
+      mezo: {
+        freq: '10²–10⁴ Hz (akustyka, ultradźwięki)',
+        system: 'Domena rezonansowa tkanki / żelu',
+        df: 'Df ≈ 1.50–1.80',
+        beta: 0.61
+      },
+      makro: {
+        freq: '10⁻⁶–10⁻³ Hz (orbity, okresy lat–tysięcy lat)',
+        system: 'Układ rezonansów orbitalnych (np. 2:1, 3:2)',
+        df: 'Df ≈ 1.20–1.50',
+        beta: 0.59
+      }
+    };
+
+    function updatePanel(scale) {
+      const d = scaleData[scale];
+      if (!d) return;
+      freqEl.textContent = d.freq;
+      systemEl.textContent = d.system;
+      dfEl.innerHTML = d.df;
+      betaLabel.textContent = 'β ≈ ' + d.beta.toFixed(2);
+
+      const minB = 0.4;
+      const maxB = 0.8;
+      const clamped = Math.max(minB, Math.min(maxB, d.beta));
+      const pct = ((clamped - minB) / (maxB - minB)) * 100;
+      betaFill.style.width = pct + '%';
+    }
+
+    function activateScale(scale) {
+      microRing.classList.remove('faem3d-active');
+      mesoRing.classList.remove('faem3d-active');
+      macroRing.classList.remove('faem3d-active');
+      scaleButtons.forEach(btn => btn.classList.remove('faem3d-btn-active'));
+
+      if (scale === 'micro') {
+        microRing.classList.add('faem3d-active');
+      } else if (scale === 'mezo') {
+        mesoRing.classList.add('faem3d-active');
+      } else if (scale === 'makro') {
+        macroRing.classList.add('faem3d-active');
+      }
+
+      scaleButtons.forEach(btn => {
+        if (btn.dataset.scale === scale) {
+          btn.classList.add('faem3d-btn-active');
+        }
+      });
+
+      desc.textContent = scaleTexts[scale];
+      updatePanel(scale);
+    }
+
+    scaleButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const scale = btn.dataset.scale;
+        activateScale(scale);
+      });
+    });
+
+    // ROTACJA – auto + myszka + zoom
+    let rotationOn = true;
+    let orbitAngle = 0;
+    let baseRotX = 22;
+    let baseRotY = -18;
+    let scaleOrbit = 1.0;
+
+    function applyOrbitTransform() {
+      if (!orbit) return;
+      orbit.style.transform =
+        'scale(' + scaleOrbit + ')' +
+        ' rotateX(' + baseRotX + 'deg)' +
+        ' rotateY(' + baseRotY + 'deg)' +
+        ' rotateZ(' + orbitAngle + 'deg)';
+    }
+
+    function animateOrbit() {
+      if (rotationOn) {
+        orbitAngle += 0.25;
+      }
+      applyOrbitTransform();
+      requestAnimationFrame(animateOrbit);
+    }
+    animateOrbit();
+
+    rotBtn.addEventListener('click', () => {
+      rotationOn = !rotationOn;
+      if (rotationOn) {
+        orbit.classList.remove('paused');
+        rotBtn.classList.add('faem3d-rot-active');
+      } else {
+        orbit.classList.add('paused');
+        rotBtn.classList.remove('faem3d-rot-active');
+      }
+    });
+
+    // Drag-rotate (mysz)
+    let isDragging = false;
+    let lastX = 0;
+    let lastY = 0;
+
+    function onPointerDown(e) {
+      isDragging = true;
+      orbit.style.cursor = 'grabbing';
+      lastX = e.clientX;
+      lastY = e.clientY;
+    }
+
+    function onPointerMove(e) {
+      if (!isDragging) return;
+      const dx = e.clientX - lastX;
+      const dy = e.clientY - lastY;
+      lastX = e.clientX;
+      lastY = e.clientY;
+
+      baseRotY += dx * 0.2;
+      baseRotX -= dy * 0.2;
+
+      applyOrbitTransform();
+    }
+
+    function onPointerUp() {
+      isDragging = false;
+      orbit.style.cursor = 'grab';
+    }
+
+    // Mysza
+    orbit.addEventListener('mousedown', onPointerDown);
+    window.addEventListener('mousemove', onPointerMove);
+    window.addEventListener('mouseup', onPointerUp);
+
+    // Dotyk
+    orbit.addEventListener('touchstart', (e) => {
+      const t = e.touches[0];
+      onPointerDown({ clientX: t.clientX, clientY: t.clientY });
+    }, { passive: true });
+
+    orbit.addEventListener('touchmove', (e) => {
+      if (!isDragging) return;
+      const t = e.touches[0];
+      onPointerMove({ clientX: t.clientX, clientY: t.clientY });
+    }, { passive: true });
+
+    orbit.addEventListener('touchend', onPointerUp);
+    orbit.addEventListener('touchcancel', onPointerUp);
+
+    // Zoom scroll kółkiem
+    orbit.addEventListener('wheel', (e) => {
+      e.preventDefault();
+      const delta = e.deltaY;
+      scaleOrbit -= delta * 0.001;
+      if (scaleOrbit < 0.8) scaleOrbit = 0.8;
+      if (scaleOrbit > 1.3) scaleOrbit = 1.3;
+      applyOrbitTransform();
+    }, { passive: false });
+
+    // stan startowy FAEM 3D
+    activateScale('micro');
+    applyOrbitTransform();
+  </script>
+</body>
+</html>
