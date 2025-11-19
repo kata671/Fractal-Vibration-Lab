@@ -191,6 +191,40 @@
       color: var(--text-main);
     }
 
+    /* TŁUMACZ PL/EN NA PASKU */
+    .faem-lang-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(9,6,30,0.9);
+    }
+
+    .faem-lang-btn {
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      cursor: pointer;
+      padding: 0 3px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .faem-lang-btn.faem-lang-active {
+      color: var(--accent-soft);
+      font-weight: 600;
+    }
+
+    .faem-lang-sep {
+      color: var(--text-muted);
+      opacity: 0.7;
+      font-size: 10px;
+    }
+
     .faem-main-card {
       background: var(--gradient-hero);
       border-radius: 30px;
@@ -1271,17 +1305,24 @@
         </div>
         <nav class="faem-nav">
           <div class="faem-nav-links">
-            <a href="#top" class="faem-nav-link">Start</a>
-            <a href="#beta-law" class="faem-nav-link">Prawo β</a>
-            <a href="#model" class="faem-nav-link">Model FAEM</a>
-            <a href="#results" class="faem-nav-link">Wyniki</a>
-            <a href="#applications" class="faem-nav-link">Zastosowania</a>
-            <a href="#faem3d" class="faem-nav-link">FAEM 3D</a>
-            <a href="#downloads" class="faem-nav-link">Monografia</a>
-            <!-- NOWA ZAKŁADKA KONTAKT -->
-            <a href="#contact" class="faem-nav-link">Kontakt</a>
+            <a href="#top" class="faem-nav-link" data-i18n="nav_start">Start</a>
+            <a href="#beta-law" class="faem-nav-link" data-i18n="nav_beta">Prawo β</a>
+            <a href="#model" class="faem-nav-link" data-i18n="nav_model">Model FAEM</a>
+            <a href="#results" class="faem-nav-link" data-i18n="nav_results">Wyniki</a>
+            <a href="#applications" class="faem-nav-link" data-i18n="nav_applications">Zastosowania</a>
+            <a href="#faem3d" class="faem-nav-link" data-i18n="nav_faem3d">FAEM 3D</a>
+            <a href="#downloads" class="faem-nav-link" data-i18n="nav_downloads">Monografia</a>
+            <a href="#contact" class="faem-nav-link" data-i18n="nav_contact">Kontakt</a>
           </div>
-          <div class="faem-chip">
+
+          <!-- TŁUMACZ PL/EN -->
+          <div class="faem-lang-toggle" id="faemLangToggle">
+            <button type="button" class="faem-lang-btn faem-lang-active" data-lang="pl">PL</button>
+            <span class="faem-lang-sep">/</span>
+            <button type="button" class="faem-lang-btn" data-lang="en">EN</button>
+          </div>
+
+          <div class="faem-chip" data-i18n="chip_lab">
             Lab: <strong>Fractal Vibration Lab</strong>
           </div>
         </nav>
@@ -1295,32 +1336,40 @@
       <section class="faem-main-card">
         <div class="faem-main-inner">
           <div>
-            <div class="faem-kicker">Od atomu do planet • FAEM β-Law</div>
-            <h1 class="faem-title">
+            <div class="faem-kicker" data-i18n="hero_kicker">
+              Od atomu do planet • FAEM β-Law
+            </div>
+            <h1 class="faem-title" data-i18n="hero_title">
               Od atomu do planet:<br />
               fraktalne Prawo <span class="beta">β</span> wibracji materii
             </h1>
-            <p class="faem-subtitle">
+            <p class="faem-subtitle" data-i18n="hero_subtitle">
               FAEM 2.3 (*Fractal Acoustic–Energy Mapping*) opisuje, jak energia niskich modów
               drganiowych przekształca się w złożone wzory geometryczne – od sieci krystalicznych,
               przez struktury biofizyczne, aż po modele rezonansów orbitalnych.
             </p>
 
             <div class="faem-badges-row">
-              <span class="faem-badge">Skalowanie log–log D<sub>f</sub> vs P<sub>Δω</sub></span>
-              <span class="faem-badge">β ≈ 0.60 ± 0.10</span>
-              <span class="faem-badge">Ciągłość mikro ↔ makro</span>
+              <span class="faem-badge" data-i18n="badge_scaling">
+                Skalowanie log–log D<sub>f</sub> vs P<sub>Δω</sub>
+              </span>
+              <span class="faem-badge" data-i18n="badge_beta">
+                β ≈ 0.60 ± 0.10
+              </span>
+              <span class="faem-badge" data-i18n="badge_continuity">
+                Ciągłość mikro ↔ makro
+              </span>
             </div>
 
             <div class="faem-cta-row">
-              <a href="#downloads" class="faem-btn-primary">
+              <a href="#downloads" class="faem-btn-primary" data-i18n="hero_btn_monografia">
                 📄 Otwórz monografię FAEM
               </a>
-              <a href="#faem3d" class="faem-btn-ghost">
+              <a href="#faem3d" class="faem-btn-ghost" data-i18n="hero_btn_faem3d">
                 🌌 Zobacz koncepcję FAEM 3D
               </a>
             </div>
-            <div class="faem-cta-note">
+            <div class="faem-cta-note" data-i18n="hero_note">
               PL + EN • wersja do druku i prezentacji • Fractal Vibration Lab – Astro_Katt.
             </div>
           </div>
@@ -1345,7 +1394,7 @@
                 <span class="faem-3d-node"></span>
               </div>
 
-              <div class="faem-hero-beta-label">
+              <div class="faem-hero-beta-label" data-i18n="hero_beta_label">
                 Prawo β – Astro_Katt<br />
                 <span style="font-size:10px;">Df = A + B·log(P<sub>Δω</sub>), β = –B</span>
               </div>
@@ -1357,17 +1406,17 @@
       <!-- Prawo β -->
       <section class="faem-section" id="beta-law">
         <div class="faem-section-header">
-          <h2 class="faem-section-title">
+          <h2 class="faem-section-title" data-i18n="beta_title">
             Prawo β – w skrócie
             <span style="font-weight:400;font-size:0.9em;color:var(--accent-soft);">
               • Astro_Katt β-Law
             </span>
           </h2>
-          <div class="faem-section-tag">β-Law • Core Idea</div>
+          <div class="faem-section-tag" data-i18n="beta_tag">β-Law • Core Idea</div>
         </div>
         <div class="faem-grid-2">
           <div>
-            <p>
+            <p data-i18n="beta_p1">
               W FAEM 2.3 wprowadzamy <span class="faem-highlight">Prawo Fraktalnej Skalowalności Energetycznej</span>
               (Prawo β), opisujące, jak <strong>energia niskich modów</strong> (P<sub>Δω</sub>) przekłada się
               na <strong>wymiar fraktalny</strong> wzorca (D<sub>f</sub>):
@@ -1376,17 +1425,17 @@
               D<sub>f</sub> = A + B · log(P<sub>Δω</sub>)<br />
               β ≡ –B
             </div>
-            <p>
+            <p data-i18n="beta_p2">
               β pełni rolę <strong>stałej morfologicznej</strong>: informuje, jak szybko (w skali logarytmicznej energii)
               pojawiają się kolejne poziomy złożoności geometrycznej.
             </p>
           </div>
           <div>
             <ul class="faem-list">
-              <li><strong>β ≈ 0.60 ± 0.10</strong> – stabilne w danych syntetycznych i przekrojowych.</li>
-              <li>Obowiązuje dla struktur mikro, mezo i makro (molekuły → biofizyka → rezonanse orbitalne).</li>
-              <li>Odporne na wybór progu binarizacji, rozdzielczości i estymatora regresji.</li>
-              <li>Generuje <strong>falsyfikowalne przewidywania</strong> dla eksperymentów laboratoryjnych.</li>
+              <li data-i18n="beta_li1"><strong>β ≈ 0.60 ± 0.10</strong> – stabilne w danych syntetycznych i przekrojowych.</li>
+              <li data-i18n="beta_li2">Obowiązuje dla struktur mikro, mezo i makro (molekuły → biofizyka → rezonanse orbitalne).</li>
+              <li data-i18n="beta_li3">Odporne na wybór progu binarizacji, rozdzielczości i estymatora regresji.</li>
+              <li data-i18n="beta_li4">Generuje <strong>falsyfikowalne przewidywania</strong> dla eksperymentów laboratoryjnych.</li>
             </ul>
           </div>
         </div>
@@ -1395,37 +1444,37 @@
       <!-- Model -->
       <section class="faem-section" id="model">
         <div class="faem-section-header">
-          <h2 class="faem-section-title">Model FAEM – Fractal Acoustic–Energy Mapping</h2>
-          <div class="faem-section-tag">Model • Methods</div>
+          <h2 class="faem-section-title" data-i18n="model_title">Model FAEM – Fractal Acoustic–Energy Mapping</h2>
+          <div class="faem-section-tag" data-i18n="model_tag">Model • Methods</div>
         </div>
         <div class="faem-grid-2">
           <div>
-            <p>
+            <p data-i18n="model_p1">
               FAEM to pipeline łączący <strong>dane widmowe</strong> (Δω–power) z <strong>obrazami cymatycznymi</strong>
               oraz ich <strong>analizą fraktalną</strong>. Dane syntetyczne generowane są z sumy fal radialnych:
             </p>
             <div class="faem-equation">
               I(x,y) = Σ cos(k<sub>n</sub> r + φ<sub>n</sub>) · e<sup>−αr</sup>
             </div>
-            <p>
+            <p data-i18n="model_p2">
               Następnie obliczamy P<sub>Δω</sub> z widma, binaryzujemy obraz, estymujemy wymiar
               D<sub>f</sub> metodą box-counting i dopasowujemy model log–log.
             </p>
           </div>
           <div>
-            <p><strong>Pipeline FAEM:</strong></p>
+            <p><strong data-i18n="model_pipeline_title">Pipeline FAEM:</strong></p>
             <ul class="faem-list">
-              <li>Generacja wzorca (syntetycznego lub eksperymentalnego).</li>
-              <li>Analiza widmowa → obliczenie P<sub>Δω</sub>.</li>
-              <li>Przetwarzanie obrazu → maska binarna.</li>
-              <li>Estymacja D<sub>f</sub> (box-counting, ≥ 8 skal ε).</li>
-              <li>Regresja log(D<sub>f</sub>) vs log(P<sub>Δω</sub>) → β.</li>
+              <li data-i18n="model_li1">Generacja wzorca (syntetycznego lub eksperymentalnego).</li>
+              <li data-i18n="model_li2">Analiza widmowa → obliczenie P<sub>Δω</sub>.</li>
+              <li data-i18n="model_li3">Przetwarzanie obrazu → maska binarna.</li>
+              <li data-i18n="model_li4">Estymacja D<sub>f</sub> (box-counting, ≥ 8 skal ε).</li>
+              <li data-i18n="model_li5">Regresja log(D<sub>f</sub>) vs log(P<sub>Δω</sub>) → β.</li>
             </ul>
             <div class="faem-pill-list">
-              <span class="faem-pill">Box-counting</span>
-              <span class="faem-pill">Bootstrap 10 000+</span>
-              <span class="faem-pill">Analiza wrażliwości</span>
-              <span class="faem-pill">Reproducible pipeline</span>
+              <span class="faem-pill" data-i18n="pill_boxcount">Box-counting</span>
+              <span class="faem-pill" data-i18n="pill_bootstrap">Bootstrap 10 000+</span>
+              <span class="faem-pill" data-i18n="pill_sensitivity">Analiza wrażliwości</span>
+              <span class="faem-pill" data-i18n="pill_reproducible">Reproducible pipeline</span>
             </div>
           </div>
         </div>
@@ -1434,25 +1483,25 @@
       <!-- Wyniki -->
       <section class="faem-section" id="results">
         <div class="faem-section-header">
-          <h2 class="faem-section-title">Wyniki i znaczenie</h2>
-          <div class="faem-section-tag">Results • Interpretation</div>
+          <h2 class="faem-section-title" data-i18n="results_title">Wyniki i znaczenie</h2>
+          <div class="faem-section-tag" data-i18n="results_tag">Results • Interpretation</div>
         </div>
         <div class="faem-grid-2">
           <div>
-            <p>
+            <p data-i18n="results_p1">
               Analizy numeryczne FAEM 2.3 pokazują silną korelację log–log pomiędzy D<sub>f</sub> a P<sub>Δω</sub>
               (R² ~ 0.6–0.8). β pozostaje stabilne przy zmianie parametrów analizy, co sugeruje,
               że Prawo β odzwierciedla <strong>rzeczywistą strukturę zjawiska falowego</strong>.
             </p>
           </div>
           <div>
-            <p>
+            <p data-i18n="results_p2">
               Wyniki są spójne z wcześniejszymi koncepcjami:
             </p>
             <ul class="faem-list">
-              <li>fraktalnym wypełnianiem przestrzeni (Mandelbrot),</li>
-              <li>przejściem od prostych do złożonych wzorów cymatycznych (Jenny),</li>
-              <li>relatywnością skali w ujęciu Nottale’a.</li>
+              <li data-i18n="results_li1">fraktalnym wypełnianiem przestrzeni (Mandelbrot),</li>
+              <li data-i18n="results_li2">przejściem od prostych do złożonych wzorów cymatycznych (Jenny),</li>
+              <li data-i18n="results_li3">relatywnością skali w ujęciu Nottale’a.</li>
             </ul>
           </div>
         </div>
@@ -1462,38 +1511,38 @@
           <table class="faem-results-table">
             <thead>
               <tr>
-                <th>Zestaw danych</th>
-                <th>N (próbek)</th>
-                <th>β (średnie ± SE)</th>
-                <th>R² (log–log)</th>
-                <th>Uwagi</th>
+                <th data-i18n="table_head_dataset">Zestaw danych</th>
+                <th data-i18n="table_head_n">N (próbek)</th>
+                <th data-i18n="table_head_beta">β (średnie ± SE)</th>
+                <th data-i18n="table_head_r2">R² (log–log)</th>
+                <th data-i18n="table_head_notes">Uwagi</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>Syntetyczne fale radialne (FAEM 2.3)</td>
-                <td>120</td>
-                <td>0.59 ± 0.04</td>
-                <td>0.82</td>
-                <td>symulacje podstawowe modelu</td>
+                <td data-i18n="table_row1_dataset">Syntetyczne fale radialne (FAEM 2.3)</td>
+                <td data-i18n="table_row1_n">120</td>
+                <td data-i18n="table_row1_beta">0.59 ± 0.04</td>
+                <td data-i18n="table_row1_r2">0.82</td>
+                <td data-i18n="table_row1_notes">symulacje podstawowe modelu</td>
               </tr>
               <tr>
-                <td>Konfiguracje quasi-biofizyczne (żele / tkanki modelowe)</td>
-                <td>60</td>
-                <td>0.62 ± 0.07</td>
-                <td>0.71</td>
-                <td>symulacje orientacyjne dla struktur mezo</td>
+                <td data-i18n="table_row2_dataset">Konfiguracje quasi-biofizyczne (żele / tkanki modelowe)</td>
+                <td data-i18n="table_row2_n">60</td>
+                <td data-i18n="table_row2_beta">0.62 ± 0.07</td>
+                <td data-i18n="table_row2_r2">0.71</td>
+                <td data-i18n="table_row2_notes">symulacje orientacyjne dla struktur mezo</td>
               </tr>
               <tr>
-                <td>Układy orbitalne (rezonanse 2:1, 3:2, 5:3)</td>
-                <td>40</td>
-                <td>0.57 ± 0.09</td>
-                <td>0.63</td>
-                <td>parametryczne modele skal makro</td>
+                <td data-i18n="table_row3_dataset">Układy orbitalne (rezonanse 2:1, 3:2, 5:3)</td>
+                <td data-i18n="table_row3_n">40</td>
+                <td data-i18n="table_row3_beta">0.57 ± 0.09</td>
+                <td data-i18n="table_row3_r2">0.63</td>
+                <td data-i18n="table_row3_notes">parametryczne modele skal makro</td>
               </tr>
             </tbody>
           </table>
-          <div class="faem-results-note">
+          <div class="faem-results-note" data-i18n="results_note">
             Wszystkie wartości mają charakter <strong>symulacyjny</strong> i służą do zobrazowania stabilności β w modelu FAEM 2.3,
             nie są to bezpośrednie wyniki pomiarów laboratoryjnych.
           </div>
@@ -1503,36 +1552,36 @@
       <!-- Zastosowania -->
       <section class="faem-section" id="applications">
         <div class="faem-section-header">
-          <h2 class="faem-section-title">Zastosowania FAEM i Prawa β</h2>
-          <div class="faem-section-tag">Applications</div>
+          <h2 class="faem-section-title" data-i18n="applications_title">Zastosowania FAEM i Prawa β</h2>
+          <div class="faem-section-tag" data-i18n="applications_tag">Applications</div>
         </div>
         <div class="faem-grid-2">
           <div>
-            <p><strong>Nauki o materiałach:</strong></p>
+            <p><strong data-i18n="app_mat_title">Nauki o materiałach:</strong></p>
             <ul class="faem-list">
-              <li>wskaznik struktury energetycznej materiałów,</li>
-              <li>monitorowanie starzenia i defektów,</li>
-              <li>analiza rezonansów ultradźwiękowych i THz.</li>
+              <li data-i18n="app_mat_li1">wskaźnik struktury energetycznej materiałów,</li>
+              <li data-i18n="app_mat_li2">monitorowanie starzenia i defektów,</li>
+              <li data-i18n="app_mat_li3">analiza rezonansów ultradźwiękowych i THz.</li>
             </ul>
-            <p><strong>Biofizyka i biologia systemowa:</strong></p>
+            <p><strong data-i18n="app_bio_title">Biofizyka i biologia systemowa:</strong></p>
             <ul class="faem-list">
-              <li>mapowanie „wibracyjnej homeostazy” tkanek,</li>
-              <li>diagnostyka obrazowa oparta na złożoności D<sub>f</sub>,</li>
-              <li>monitorowanie dynamiki struktur komórkowych.</li>
+              <li data-i18n="app_bio_li1">mapowanie „wibracyjnej homeostazy” tkanek,</li>
+              <li data-i18n="app_bio_li2">diagnostyka obrazowa oparta na złożoności D<sub>f</sub>,</li>
+              <li data-i18n="app_bio_li3">monitorowanie dynamiki struktur komórkowych.</li>
             </ul>
           </div>
           <div>
-            <p><strong>Akustyka i inżynieria dźwięku:</strong></p>
+            <p><strong data-i18n="app_acoust_title">Akustyka i inżynieria dźwięku:</strong></p>
             <ul class="faem-list">
-              <li>projektowanie komór akustycznych o zadanych właściwościach,</li>
-              <li>kontrolowane cymatyczne wizualizacje,</li>
-              <li>synteza dźwięku o określonej złożoności strukturalnej.</li>
+              <li data-i18n="app_acoust_li1">projektowanie komór akustycznych o zadanych właściwościach,</li>
+              <li data-i18n="app_acoust_li2">kontrolowane cymatyczne wizualizacje,</li>
+              <li data-i18n="app_acoust_li3">synteza dźwięku o określonej złożoności strukturalnej.</li>
             </ul>
-            <p><strong>Astrofizyka i dynamika układów planetarnych:</strong></p>
+            <p><strong data-i18n="app_astro_title">Astrofizyka i dynamika układów planetarnych:</strong></p>
             <ul class="faem-list">
-              <li>indeks rezonansów orbitalnych,</li>
-              <li>klasyfikacja systemów planetarnych wg geometrii,</li>
-              <li>modele fal grawitacyjnych w układach wielociałowych.</li>
+              <li data-i18n="app_astro_li1">indeks rezonansów orbitalnych,</li>
+              <li data-i18n="app_astro_li2">klasyfikacja systemów planetarnych wg geometrii,</li>
+              <li data-i18n="app_astro_li3">modele fal grawitacyjnych w układach wielociałowych.</li>
             </ul>
           </div>
         </div>
@@ -1541,17 +1590,17 @@
       <!-- FAEM 3D -->
       <section class="faem-section" id="faem3d">
         <div class="faem-section-header">
-          <h2 class="faem-section-title">FAEM 3D – atlas fraktalnych energii materii</h2>
-          <div class="faem-section-tag">Concept • 3D Atlas</div>
+          <h2 class="faem-section-title" data-i18n="faem3d_title">FAEM 3D – atlas fraktalnych energii materii</h2>
+          <div class="faem-section-tag" data-i18n="faem3d_tag">Concept • 3D Atlas</div>
         </div>
-        <p>
+        <p data-i18n="faem3d_p1">
           Kolejnym krokiem projektu jest <strong>FAEM 3D</strong> – interaktywny atlas prezentujący <em>β-Law</em>
           w przestrzeni 3D: od poziomu atomowego, przez struktury biofizyczne, aż po skale planetarne.
         </p>
         <ul class="faem-list">
-          <li><strong>Warstwa mikro:</strong> widma molekularne, drgania sieci krystalicznych.</li>
-          <li><strong>Warstwa mezo:</strong> modele domen rezonansowych, struktury tkanek.</li>
-          <li><strong>Warstwa makro:</strong> rezonanse orbitalne, układy planetarne, wzorce grawitacyjne.</li>
+          <li data-i18n="faem3d_li1"><strong>Warstwa mikro:</strong> widma molekularne, drgania sieci krystalicznych.</li>
+          <li data-i18n="faem3d_li2"><strong>Warstwa mezo:</strong> modele domen rezonansowych, struktury tkanek.</li>
+          <li data-i18n="faem3d_li3"><strong>Warstwa makro:</strong> rezonanse orbitalne, układy planetarne, wzorce grawitacyjne.</li>
         </ul>
 
         <div class="faem-3d-diagram">
@@ -1579,19 +1628,21 @@
         </div>
 
         <div class="faem-3d-labels">
-          <div class="faem-3d-label-pill">Mikro – molekuły, sieci krystaliczne</div>
-          <div class="faem-3d-label-pill">Mezo – domeny rezonansowe, tkanki</div>
-          <div class="faem-3d-label-pill">Makro – orbity, układy planetarne</div>
+          <div class="faem-3d-label-pill" data-i18n="faem3d_label_micro">Mikro – molekuły, sieci krystaliczne</div>
+          <div class="faem-3d-label-pill" data-i18n="faem3d_label_mezo">Mezo – domeny rezonansowe, tkanki</div>
+          <div class="faem-3d-label-pill" data-i18n="faem3d_label_macro">Makro – orbity, układy planetarne</div>
         </div>
-        <div class="faem-3d-caption">
+        <div class="faem-3d-caption" data-i18n="faem3d_caption">
           Schemat FAEM 3D: te same prawa skalowania β obowiązują na poziomie mikro, mezo i makro.
         </div>
 
         <div class="faem-3d-controls">
-          <button class="faem-3d-btn faem-3d-btn-active" data-scale="micro">Mikro</button>
-          <button class="faem-3d-btn" data-scale="mezo">Mezo</button>
-          <button class="faem-3d-btn" data-scale="makro">Makro</button>
-          <button class="faem-3d-rot-btn faem-3d-rot-active" id="faem3dRotBtn">Obrót ON/OFF</button>
+          <button class="faem-3d-btn faem-3d-btn-active" data-scale="micro" data-i18n="faem3d_btn_micro">Mikro</button>
+          <button class="faem-3d-btn" data-scale="mezo" data-i18n="faem3d_btn_mezo">Mezo</button>
+          <button class="faem-3d-btn" data-scale="makro" data-i18n="faem3d_btn_makro">Makro</button>
+          <button class="faem-3d-rot-btn faem-3d-rot-active" id="faem3dRotBtn" data-i18n="faem3d_rot_btn">
+            Obrót ON/OFF
+          </button>
         </div>
         <p class="faem-3d-desc-current" id="faem3dDesc">
           Mikro: widma molekularne i drgania sieci krystalicznych – lokalne mody, które inicjują kaskadę fraktalną.
@@ -1599,25 +1650,25 @@
 
         <div class="faem-3d-datapanel">
           <div class="faem-3d-datarow">
-            <span>Skala częstotliwości:</span>
+            <span data-i18n="faem3d_freq_label">Skala częstotliwości:</span>
             <strong id="faem3dFreq"></strong>
           </div>
           <div class="faem-3d-datarow">
-            <span>Przykładowy układ:</span>
+            <span data-i18n="faem3d_system_label">Przykładowy układ:</span>
             <strong id="faem3dSystem"></strong>
           </div>
           <div class="faem-3d-datarow">
-            <span>Zakres D<sub>f</sub> (wzorzec):</span>
+            <span data-i18n="faem3d_df_label">Zakres D<sub>f</sub> (wzorzec):</span>
             <strong id="faem3dDf"></strong>
           </div>
           <div class="faem-3d-datarow" style="flex-direction:column;align-items:flex-start;">
-            <span>β (orientacyjnie, z symulacji):</span>
+            <span data-i18n="faem3d_beta_label">β (orientacyjnie, z symulacji):</span>
             <div class="faem-3d-betameter">
               <div class="faem-3d-betameter-fill" id="faem3dBetaFill"></div>
               <span class="faem-3d-betameter-label" id="faem3dBetaLabel"></span>
             </div>
           </div>
-          <div class="faem-3d-note">
+          <div class="faem-3d-note" data-i18n="faem3d_note">
             Wartości w panelu mają charakter poglądowy (symulacje numeryczne), a nie bezpośrednie dane pomiarowe.
           </div>
         </div>
@@ -1626,22 +1677,22 @@
         <div class="faem-eq-toggle">
           <button class="faem-eq-btn" id="faemEqToggle">
             <span class="icon">▼</span>
-            Pokaż / ukryj panel równań β-Law
+            <span data-i18n="eq_toggle_text">Pokaż / ukryj panel równań β-Law</span>
           </button>
         </div>
         <div class="faem-eq-panel" id="faemEqPanel">
-          <h3>Równanie Prawa Fraktalnej Skalowalności Energetycznej (Prawo β)</h3>
+          <h3 data-i18n="eq_title">Równanie Prawa Fraktalnej Skalowalności Energetycznej (Prawo β)</h3>
           <div class="faem-equation">
             D<sub>f</sub> = A + B · log(P<sub>Δω</sub>)<br />
             β ≡ −B
           </div>
-          <p>
+          <p data-i18n="eq_p1">
             <strong>D<sub>f</sub></strong> – wymiar fraktalny wzorca cymatycznego lub rezonansowego.<br />
             <strong>P<sub>Δω</sub></strong> – energia (moc) niskich modów częstotliwościowych w wybranym oknie Δω.<br />
             <strong>β</strong> – tempo, z jakim energia falowa przekształca się w złożoność geometryczną (logarytmiczna
             „sprawność kaskady”).
           </p>
-          <p class="faem-eq-beta-note">
+          <p class="faem-eq-beta-note" data-i18n="eq_p2">
             W FAEM 2.3 otrzymujemy β ≈ 0.60 ± 0.10 dla danych syntetycznych i przekrojowych, stabilne względem parametrów
             analizy. Sugeruje to uniwersalny mechanizm skalowania mikro–mezo–makro.
           </p>
@@ -1649,7 +1700,7 @@
 
         <!-- Mini widmo PΔω -->
         <div class="faem-spectrum-wrapper">
-          <div class="faem-spectrum-title">
+          <div class="faem-spectrum-title" data-i18n="spectrum_title">
             Schematyczne widmo P<sub>Δω</sub> dla trzech skal (mikro, mezo, makro)
           </div>
           <svg class="faem-spectrum-svg" viewBox="0 0 260 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -1697,15 +1748,15 @@
 
             <!-- Legendy -->
             <rect x="34" y="12" width="8" height="2" fill="url(#microGrad)" />
-            <text x="46" y="14.5" fill="#e9e4ff" font-size="9">Mikro</text>
+            <text x="46" y="14.5" fill="#e9e4ff" font-size="9" data-i18n="spectrum_legend_micro">Mikro</text>
 
             <rect x="94" y="12" width="8" height="2" fill="url(#mesoGrad)" />
-            <text x="106" y="14.5" fill="#e9e4ff" font-size="9">Mezo</text>
+            <text x="106" y="14.5" fill="#e9e4ff" font-size="9" data-i18n="spectrum_legend_mezo">Mezo</text>
 
             <rect x="152" y="12" width="8" height="2" fill="url(#macroGrad)" />
-            <text x="164" y="14.5" fill="#e9e4ff" font-size="9">Makro</text>
+            <text x="164" y="14.5" fill="#e9e4ff" font-size="9" data-i18n="spectrum_legend_macro">Makro</text>
           </svg>
-          <div class="faem-spectrum-caption">
+          <div class="faem-spectrum-caption" data-i18n="spectrum_caption">
             Widmo schematyczne: rzeczywiste kształty zależą od badanego układu, ale integracja P<sub>Δω</sub> zasila Prawo β.
           </div>
         </div>
@@ -1713,14 +1764,14 @@
         <!-- Mode Explorer -->
         <div class="faem-mode-explorer">
           <div class="faem-mode-header">
-            <strong>Mode Explorer – od jednej fali do kaskady fraktalnej</strong>
-            <span>Symulowane morfologie przy 1–4 pobudzonych modach</span>
+            <strong data-i18n="mode_title">Mode Explorer – od jednej fali do kaskady fraktalnej</strong>
+            <span data-i18n="mode_subtitle">Symulowane morfologie przy 1–4 pobudzonych modach</span>
           </div>
           <div class="faem-mode-buttons">
-            <button class="faem-mode-btn faem-mode-active" data-modes="1">1 mod</button>
-            <button class="faem-mode-btn" data-modes="2">2 mody</button>
-            <button class="faem-mode-btn" data-modes="3">3 mody</button>
-            <button class="faem-mode-btn" data-modes="4">4 mody</button>
+            <button class="faem-mode-btn faem-mode-active" data-modes="1" data-i18n="mode_btn1">1 mod</button>
+            <button class="faem-mode-btn" data-modes="2" data-i18n="mode_btn2">2 mody</button>
+            <button class="faem-mode-btn" data-modes="3" data-i18n="mode_btn3">3 mody</button>
+            <button class="faem-mode-btn" data-modes="4" data-i18n="mode_btn4">4 mody</button>
           </div>
           <div class="faem-mode-main">
             <div class="faem-mode-desc" id="faemModeDesc">
@@ -1738,80 +1789,83 @@
       <!-- Monografia -->
       <section class="faem-section" id="downloads">
         <div class="faem-section-header">
-          <h2 class="faem-section-title">Monografia FAEM – pełny tekst</h2>
-          <div class="faem-section-tag">Full Text • PL + EN</div>
+          <h2 class="faem-section-title" data-i18n="downloads_title">Monografia FAEM – pełny tekst</h2>
+          <div class="faem-section-tag" data-i18n="downloads_tag">Full Text • PL + EN</div>
         </div>
-        <p>
+        <p data-i18n="downloads_intro">
           Poniżej znajdziesz <strong>pełną monografię</strong> FAEM 2.3:
-          w wersji HTML (PL/EN) hostowanej na GitHub Pages oraz jako preprint PDF w repozytorium Zenodo (z DOI).
+          w wersji PDF (PL/EN) hostowanej na GitHub Pages oraz jako preprint PDF w repozytorium Zenodo (z DOI).
         </p>
         <div class="faem-download-box">
-          <p>
+          <p data-i18n="downloads_box_title">
             Wersje online i preprint:
           </p>
           <div class="faem-monografia-links">
             <a class="faem-monografia-link"
                href="Od_atomu_do_planet_Prawo_Beta_FULL_PL_DARK.pdf"
-               target="_blank" rel="noopener">
+               target="_blank" rel="noopener"
+               data-i18n="download_pl">
               🇵🇱 Otwórz monografię PL (PDF)
             </a>
             <a class="faem-monografia-link"
                href="From_atom_to_planets_BetaLaw_FULL_EN_DARK.pdf"
-               target="_blank" rel="noopener">
+               target="_blank" rel="noopener"
+               data-i18n="download_en">
               🇬🇧 Open monograph EN (PDF)
             </a>
             <a class="faem-monografia-link"
                href="https://doi.org/10.5281/zenodo.17635753"
-               target="_blank" rel="noopener">
+               target="_blank" rel="noopener"
+               data-i18n="download_doi">
               🔗 Preprint PDF (Zenodo, DOI)
             </a>
           </div>
         </div>
 
         <div class="faem-monografia-outline">
-          <h3>Szkic struktury monografii (offline preview)</h3>
+          <h3 data-i18n="outline_title">Szkic struktury monografii (offline preview)</h3>
           <ol>
-            <li><strong>Wprowadzenie</strong> – motywacja, luka badawcza, definicja FAEM, zarys Prawa β.</li>
-            <li><strong>Model FAEM</strong> – definicja P<sub>Δω</sub>, konstrukcja obrazów cymatycznych, algorytm D<sub>f</sub>.</li>
-            <li><strong>Metody numeryczne</strong> – generacja danych syntetycznych, parametry symulacji, estymacja regresji.</li>
-            <li><strong>Wyniki</strong> – wykresy D<sub>f</sub> vs P<sub>Δω</sub>, stabilność β, analizy wrażliwości.</li>
-            <li><strong>Dyskusja</strong> – interpretacja β jako miary konwersji energia → geometria, ciągłość mikro–makro.</li>
-            <li><strong>Znaczenie i zastosowania</strong> – materiały, biofizyka, akustyka, astrofizyka.</li>
-            <li><strong>Wnioski</strong> – podsumowanie i kierunki dalszych badań (FAEM 3D, eksperymenty THz / cymatyka).</li>
-            <li><strong>Aneks</strong> – definicje matematyczne, szczegóły algorytmów, dodatkowe wykresy β.</li>
+            <li data-i18n="outline_li1"><strong>Wprowadzenie</strong> – motywacja, luka badawcza, definicja FAEM, zarys Prawa β.</li>
+            <li data-i18n="outline_li2"><strong>Model FAEM</strong> – definicja P<sub>Δω</sub>, konstrukcja obrazów cymatycznych, algorytm D<sub>f</sub>.</li>
+            <li data-i18n="outline_li3"><strong>Metody numeryczne</strong> – generacja danych syntetycznych, parametry symulacji, estymacja regresji.</li>
+            <li data-i18n="outline_li4"><strong>Wyniki</strong> – wykresy D<sub>f</sub> vs P<sub>Δω</sub>, stabilność β, analizy wrażliwości.</li>
+            <li data-i18n="outline_li5"><strong>Dyskusja</strong> – interpretacja β jako miary konwersji energia → geometria, ciągłość mikro–makro.</li>
+            <li data-i18n="outline_li6"><strong>Znaczenie i zastosowania</strong> – materiały, biofizyka, akustyka, astrofizyka.</li>
+            <li data-i18n="outline_li7"><strong>Wnioski</strong> – podsumowanie i kierunki dalszych badań (FAEM 3D, eksperymenty THz / cymatyka).</li>
+            <li data-i18n="outline_li8"><strong>Aneks</strong> – definicje matematyczne, szczegóły algorytmów, dodatkowe wykresy β.</li>
           </ol>
-          <p style="margin-top:6px;font-size:12px;">
+          <p style="margin-top:6px;font-size:12px;" data-i18n="outline_note">
             Wersje PDF są optymalne do czytania online i druku, a wersja z Zenodo jest przeznaczona do cytowania
             i archiwizacji (stabilny DOI).
           </p>
         </div>
 
         <div class="faem-preview-toggle">
-          <button class="faem-preview-btn" id="faemPreviewBtn">
+          <button class="faem-preview-btn" id="faemPreviewBtn" data-i18n="preview_btn">
             👁 Pokaż / ukryj podgląd monografii (fragment PL)
           </button>
         </div>
         <div class="faem-preview-panel" id="faemPreview">
-          <h3>Od atomu do planet: fraktalne Prawo β wibracji materii – fragment wprowadzenia</h3>
-          <p>
+          <h3 data-i18n="preview_title">Od atomu do planet: fraktalne Prawo β wibracji materii – fragment wprowadzenia</h3>
+          <p data-i18n="preview_p1">
             W niniejszej pracy wprowadzamy <strong>Prawo Fraktalnej Skalowalności Energetycznej (Prawo β)</strong>,
             które łączy widmo niskich modów drganiowych z geometrią wzorów cymatycznych i rezonansowych. Celem jest
             zbudowanie mostu pomiędzy skalą mikro (drgania molekularne), mezo (struktury biofizyczne) i makro
             (modele rezonansów orbitalnych).
           </p>
-          <p>
+          <p data-i18n="preview_p2">
             Kluczowym wynikiem jest zaobserwowanie stabilnej zależności:
             <em>D<sub>f</sub> = A + B·log(P<sub>Δω</sub>)</em>, gdzie <em>β ≡ −B</em> przyjmuje wartość
             β ≈ 0.60 ± 0.10 w szerokim zakresie symulacji i konfiguracji. Interpretujemy β jako miarę „sprawności”
             kaskady, w której energia fal przechodzi w coraz bogatszą strukturę morfologiczną.
           </p>
-          <p>
+          <p data-i18n="preview_p3">
             Na poziomie metodycznym łączymy modelowanie syntetyczne (sumy fal radialnych), analizę widmową, przetwarzanie
             obrazu oraz estymację wymiaru fraktalnego. Pipeline FAEM 2.3 został zaprojektowany tak, aby był
             <strong>reprodukowalny</strong> i <strong>odporny na wybór parametrów</strong>, co pozwala traktować β-Law
             jako kandydaturę na uniwersalne prawo skalujące dla układów falowych.
           </p>
-          <p style="font-size:12px;opacity:0.8;">
+          <p style="font-size:12px;opacity:0.8;" data-i18n="preview_p4">
             To jedynie fragment. Pełny tekst (rozdziały 1–7 oraz aneks) znajduje się w monografii PDF.
           </p>
         </div>
@@ -1820,10 +1874,10 @@
       <!-- NOWA SEKCJA KONTAKT -->
       <section class="faem-section" id="contact">
         <div class="faem-section-header">
-          <h2 class="faem-section-title">Kontakt</h2>
-          <div class="faem-section-tag">Contact</div>
+          <h2 class="faem-section-title" data-i18n="contact_title">Kontakt</h2>
+          <div class="faem-section-tag" data-i18n="contact_tag">Contact</div>
         </div>
-        <p>
+        <p data-i18n="contact_p1">
           W sprawach związanych z projektem FAEM 2.3 / Fractal Vibration Lab możesz pisać na adres:
         </p>
         <p>
@@ -1832,8 +1886,8 @@
       </section>
 
       <footer class="faem-footer">
-        <span>© Fractal Vibration Lab — Astro_Katt • FAEM 2.3 β-Law</span>
-        <span>Kontakt: <a href="mailto:fractalvibrationlab@gmail.com">fractalvibrationlab@gmail.com</a></span>
+        <span data-i18n="footer_left">© Fractal Vibration Lab — Astro_Katt • FAEM 2.3 β-Law</span>
+        <span data-i18n="footer_right">Kontakt: <a href="mailto:fractalvibrationlab@gmail.com">fractalvibrationlab@gmail.com</a></span>
       </footer>
     </div>
 
@@ -1871,40 +1925,62 @@
     const betaFill = document.getElementById('faem3dBetaFill');
     const betaLabel = document.getElementById('faem3dBetaLabel');
 
-    const scaleTexts = {
-      micro: 'Mikro: widma molekularne i drgania sieci krystalicznych – lokalne mody, które inicjują kaskadę fraktalną.',
-      mezo: 'Mezo: domeny rezonansowe i tkanki – struktury pośrednie, gdzie sumują się lokalne mody i pojawia się geometria organizacji.',
-      makro: 'Makro: orbity i układy planetarne – duże skale, gdzie geometryczne skutki sumowania fal stają się globalnym wzorcem.'
+    // Teksty opisowe FAEM 3D dla PL/EN
+    const faem3dTexts = {
+      micro: {
+        pl: 'Mikro: widma molekularne i drgania sieci krystalicznych – lokalne mody, które inicjują kaskadę fraktalną.',
+        en: 'Micro scale: molecular spectra and lattice vibrations – local modes that trigger the fractal cascade.'
+      },
+      mezo: {
+        pl: 'Mezo: domeny rezonansowe i tkanki – struktury pośrednie, gdzie sumują się lokalne mody i pojawia się geometria organizacji.',
+        en: 'Meso scale: resonant domains and tissues – intermediate structures where local modes sum into organized geometry.'
+      },
+      makro: {
+        pl: 'Makro: orbity i układy planetarne – duże skale, gdzie geometryczne skutki sumowania fal stają się globalnym wzorcem.',
+        en: 'Macro scale: orbits and planetary systems – large scales where summed waves form global geometric patterns.'
+      }
     };
 
     // Dane orientacyjne z symulacji – nie dane pomiarowe
     const scaleData = {
       micro: {
-        freq: '10¹²–10¹⁴ Hz (THz, drgania sieciowe)',
-        system: 'Sieć krystaliczna (np. SiO₂, Al₂O₃)',
-        df: 'Df ≈ 1.30–1.60',
+        freqPl: '10¹²–10¹⁴ Hz (THz, drgania sieciowe)',
+        freqEn: '10¹²–10¹⁴ Hz (THz, lattice vibrations)',
+        systemPl: 'Sieć krystaliczna (np. SiO₂, Al₂O₃)',
+        systemEn: 'Crystal lattice (e.g. SiO₂, Al₂O₃)',
+        dfPl: 'Df ≈ 1.30–1.60',
+        dfEn: 'Df ≈ 1.30–1.60',
         beta: 0.58
       },
       mezo: {
-        freq: '10²–10⁴ Hz (akustyka, ultradźwięki)',
-        system: 'Domena rezonansowa tkanki / żelu',
-        df: 'Df ≈ 1.50–1.80',
+        freqPl: '10²–10⁴ Hz (akustyka, ultradźwięki)',
+        freqEn: '10²–10⁴ Hz (acoustics, ultrasound)',
+        systemPl: 'Domena rezonansowa tkanki / żelu',
+        systemEn: 'Resonant domain of tissue / gel',
+        dfPl: 'Df ≈ 1.50–1.80',
+        dfEn: 'Df ≈ 1.50–1.80',
         beta: 0.61
       },
       makro: {
-        freq: '10⁻⁶–10⁻³ Hz (orbity, okresy lat–tysięcy lat)',
-        system: 'Układ rezonansów orbitalnych (np. 2:1, 3:2)',
-        df: 'Df ≈ 1.20–1.50',
+        freqPl: '10⁻⁶–10⁻³ Hz (orbity, okresy lat–tysięcy lat)',
+        freqEn: '10⁻⁶–10⁻³ Hz (orbits, periods of years–thousands of years)',
+        systemPl: 'Układ rezonansów orbitalnych (np. 2:1, 3:2)',
+        systemEn: 'Orbital resonance system (e.g. 2:1, 3:2)',
+        dfPl: 'Df ≈ 1.20–1.50',
+        dfEn: 'Df ≈ 1.20–1.50',
         beta: 0.59
       }
     };
 
+    let currentLang = 'pl';
+    let currentScale = 'micro';
+
     function updatePanel(scale) {
       const d = scaleData[scale];
       if (!d) return;
-      freqEl.textContent = d.freq;
-      systemEl.textContent = d.system;
-      dfEl.innerHTML = d.df;
+      freqEl.textContent = currentLang === 'pl' ? d.freqPl : d.freqEn;
+      systemEl.textContent = currentLang === 'pl' ? d.systemPl : d.systemEn;
+      dfEl.innerHTML = currentLang === 'pl' ? d.dfPl : d.dfEn;
       betaLabel.textContent = 'β ≈ ' + d.beta.toFixed(2);
 
       const minB = 0.4;
@@ -1934,7 +2010,12 @@
         }
       });
 
-      desc.textContent = scaleTexts[scale];
+      const t = faem3dTexts[scale];
+      if (t) {
+        desc.textContent = currentLang === 'pl' ? t.pl : t.en;
+      }
+
+      currentScale = scale;
       updatePanel(scale);
     }
 
@@ -2053,7 +2134,8 @@
       eqBtn.addEventListener('click', () => {
         eqOpen = !eqOpen;
         eqPanel.style.display = eqOpen ? 'block' : 'none';
-        eqBtn.querySelector('.icon').textContent = eqOpen ? '▲' : '▼';
+        const iconEl = eqBtn.querySelector('.icon');
+        if (iconEl) iconEl.textContent = eqOpen ? '▲' : '▼';
       });
     }
 
@@ -2063,11 +2145,21 @@
     const modeBox = document.getElementById('faemModeBox');
 
     const modeTexts = {
-      1: '1 mod: pojedyncza dominująca częstotliwość generuje prosty, niemal regularny wzór (np. kilka koncentrycznych pierścieni). Df ~ 1.0–1.2.',
-      2: '2 mody: superpozycja dwóch częstotliwości wprowadza bicie i modulacje – wzór staje się bogatszy, lecz wciąż ma wyraźne symetrie. Df ~ 1.2–1.4.',
-      3: '3 mody: pojawiają się interferencje trójskładnikowe, złożone węzły i „wyspy” intensywności. Wzór zaczyna przypominać typowe cymatyczne struktury. Df ~ 1.4–1.6.',
-      4: '4 mody: pełna kaskada – wiele węzłów, quasi-fraktalne rozgałęzienia, brak prostych dominujących symetrii. Df ~ 1.6–1.8 (w granicach modelu).'
+      pl: {
+        1: '1 mod: pojedyncza dominująca częstotliwość generuje prosty, niemal regularny wzór (np. kilka koncentrycznych pierścieni). Df ~ 1.0–1.2.',
+        2: '2 mody: superpozycja dwóch częstotliwości wprowadza bicie i modulacje – wzór staje się bogatszy, lecz wciąż ma wyraźne symetrie. Df ~ 1.2–1.4.',
+        3: '3 mody: pojawiają się interferencje trójskładnikowe, złożone węzły i „wyspy” intensywności. Wzór zaczyna przypominać typowe cymatyczne struktury. Df ~ 1.4–1.6.',
+        4: '4 mody: pełna kaskada – wiele węzłów, quasi-fraktalne rozgałęzienia, brak prostych dominujących symetrii. Df ~ 1.6–1.8 (w granicach modelu).'
+      },
+      en: {
+        1: '1 mode: a single dominant frequency generates a simple, almost regular pattern (e.g. a few concentric rings). Df ~ 1.0–1.2.',
+        2: '2 modes: superposition of two frequencies introduces beating and modulation – the pattern becomes richer, but still has clear symmetries. Df ~ 1.2–1.4.',
+        3: '3 modes: three-way interference, complex nodes and “islands” of intensity appear. The pattern starts to resemble typical cymatic structures. Df ~ 1.4–1.6.',
+        4: '4 modes: full cascade – many nodes, quasi-fractal branching, no simple dominant symmetries. Df ~ 1.6–1.8 (within the model limits).'
+      }
     };
+
+    let currentMode = 1;
 
     function setMode(m) {
       modeBtns.forEach(b => b.classList.remove('faem-mode-active'));
@@ -2076,9 +2168,10 @@
           b.classList.add('faem-mode-active');
         }
       });
-      modeDesc.textContent = modeTexts[m] || '';
+      modeDesc.textContent = modeTexts[currentLang][m] || '';
       modeBox.classList.remove('mode1', 'mode2', 'mode3', 'mode4');
       modeBox.classList.add('mode' + m);
+      currentMode = m;
     }
 
     modeBtns.forEach(b => {
@@ -2087,6 +2180,7 @@
         setMode(m);
       });
     });
+
     // stan startowy Mode Explorer
     setMode(1);
 
@@ -2100,6 +2194,378 @@
         prevPanel.style.display = prevOpen ? 'block' : 'none';
       });
     }
+
+    // --- I18N (PL/EN) ---
+    const langButtons = document.querySelectorAll('.faem-lang-btn');
+
+    const i18n = {
+      pl: {
+        nav_start: 'Start',
+        nav_beta: 'Prawo β',
+        nav_model: 'Model FAEM',
+        nav_results: 'Wyniki',
+        nav_applications: 'Zastosowania',
+        nav_faem3d: 'FAEM 3D',
+        nav_downloads: 'Monografia',
+        nav_contact: 'Kontakt',
+        chip_lab: 'Lab: <strong>Fractal Vibration Lab</strong>',
+
+        hero_kicker: 'Od atomu do planet • FAEM β-Law',
+        hero_title: 'Od atomu do planet:<br />fraktalne Prawo <span class="beta">β</span> wibracji materii',
+        hero_subtitle: 'FAEM 2.3 (*Fractal Acoustic–Energy Mapping*) opisuje, jak energia niskich modów<br />drganiowych przekształca się w złożone wzory geometryczne – od sieci krystalicznych,<br />przez struktury biofizyczne, aż po modele rezonansów orbitalnych.',
+        badge_scaling: 'Skalowanie log–log D<sub>f</sub> vs P<sub>Δω</sub>',
+        badge_beta: 'β ≈ 0.60 ± 0.10',
+        badge_continuity: 'Ciągłość mikro ↔ makro',
+        hero_btn_monografia: '📄 Otwórz monografię FAEM',
+        hero_btn_faem3d: '🌌 Zobacz koncepcję FAEM 3D',
+        hero_note: 'PL + EN • wersja do druku i prezentacji • Fractal Vibration Lab – Astro_Katt.',
+        hero_beta_label: 'Prawo β – Astro_Katt<br /><span style="font-size:10px;">Df = A + B·log(P<sub>Δω</sub>), β = –B</span>',
+
+        beta_title: 'Prawo β – w skrócie <span style="font-weight:400;font-size:0.9em;color:var(--accent-soft);"> • Astro_Katt β-Law</span>',
+        beta_tag: 'β-Law • Core Idea',
+        beta_p1: 'W FAEM 2.3 wprowadzamy <span class="faem-highlight">Prawo Fraktalnej Skalowalności Energetycznej</span> (Prawo β), opisujące, jak <strong>energia niskich modów</strong> (P<sub>Δω</sub>) przekłada się na <strong>wymiar fraktalny</strong> wzorca (D<sub>f</sub>):',
+        beta_p2: 'β pełni rolę <strong>stałej morfologicznej</strong>: informuje, jak szybko (w skali logarytmicznej energii) pojawiają się kolejne poziomy złożoności geometrycznej.',
+        beta_li1: '<strong>β ≈ 0.60 ± 0.10</strong> – stabilne w danych syntetycznych i przekrojowych.',
+        beta_li2: 'Obowiązuje dla struktur mikro, mezo i makro (molekuły → biofizyka → rezonanse orbitalne).',
+        beta_li3: 'Odporne na wybór progu binarizacji, rozdzielczości i estymatora regresji.',
+        beta_li4: 'Generuje <strong>falsyfikowalne przewidywania</strong> dla eksperymentów laboratoryjnych.',
+
+        model_title: 'Model FAEM – Fractal Acoustic–Energy Mapping',
+        model_tag: 'Model • Methods',
+        model_p1: 'FAEM to pipeline łączący <strong>dane widmowe</strong> (Δω–power) z <strong>obrazami cymatycznymi</strong> oraz ich <strong>analizą fraktalną</strong>. Dane syntetyczne generowane są z sumy fal radialnych:',
+        model_p2: 'Następnie obliczamy P<sub>Δω</sub> z widma, binaryzujemy obraz, estymujemy wymiar D<sub>f</sub> metodą box-counting i dopasowujemy model log–log.',
+        model_pipeline_title: 'Pipeline FAEM:',
+        model_li1: 'Generacja wzorca (syntetycznego lub eksperymentalnego).',
+        model_li2: 'Analiza widmowa → obliczenie P<sub>Δω</sub>.',
+        model_li3: 'Przetwarzanie obrazu → maska binarna.',
+        model_li4: 'Estymacja D<sub>f</sub> (box-counting, ≥ 8 skal ε).',
+        model_li5: 'Regresja log(D<sub>f</sub>) vs log(P<sub>Δω</sub>) → β.',
+        pill_boxcount: 'Box-counting',
+        pill_bootstrap: 'Bootstrap 10 000+',
+        pill_sensitivity: 'Analiza wrażliwości',
+        pill_reproducible: 'Reproducible pipeline',
+
+        results_title: 'Wyniki i znaczenie',
+        results_tag: 'Results • Interpretation',
+        results_p1: 'Analizy numeryczne FAEM 2.3 pokazują silną korelację log–log pomiędzy D<sub>f</sub> a P<sub>Δω</sub> (R² ~ 0.6–0.8). β pozostaje stabilne przy zmianie parametrów analizy, co sugeruje, że Prawo β odzwierciedla <strong>rzeczywistą strukturę zjawiska falowego</strong>.',
+        results_p2: 'Wyniki są spójne z wcześniejszymi koncepcjami:',
+        results_li1: 'fraktalnym wypełnianiem przestrzeni (Mandelbrot),',
+        results_li2: 'przejściem od prostych do złożonych wzorów cymatycznych (Jenny),',
+        results_li3: 'relatywnością skali w ujęciu Nottale’a.',
+        table_head_dataset: 'Zestaw danych',
+        table_head_n: 'N (próbek)',
+        table_head_beta: 'β (średnie ± SE)',
+        table_head_r2: 'R² (log–log)',
+        table_head_notes: 'Uwagi',
+        table_row1_dataset: 'Syntetyczne fale radialne (FAEM 2.3)',
+        table_row1_n: '120',
+        table_row1_beta: '0.59 ± 0.04',
+        table_row1_r2: '0.82',
+        table_row1_notes: 'symulacje podstawowe modelu',
+        table_row2_dataset: 'Konfiguracje quasi-biofizyczne (żele / tkanki modelowe)',
+        table_row2_n: '60',
+        table_row2_beta: '0.62 ± 0.07',
+        table_row2_r2: '0.71',
+        table_row2_notes: 'symulacje orientacyjne dla struktur mezo',
+        table_row3_dataset: 'Układy orbitalne (rezonanse 2:1, 3:2, 5:3)',
+        table_row3_n: '40',
+        table_row3_beta: '0.57 ± 0.09',
+        table_row3_r2: '0.63',
+        table_row3_notes: 'parametryczne modele skal makro',
+        results_note: 'Wszystkie wartości mają charakter <strong>symulacyjny</strong> i służą do zobrazowania stabilności β w modelu FAEM 2.3, nie są to bezpośrednie wyniki pomiarów laboratoryjnych.',
+
+        applications_title: 'Zastosowania FAEM i Prawa β',
+        applications_tag: 'Applications',
+        app_mat_title: 'Nauki o materiałach:',
+        app_mat_li1: 'wskaźnik struktury energetycznej materiałów,',
+        app_mat_li2: 'monitorowanie starzenia i defektów,',
+        app_mat_li3: 'analiza rezonansów ultradźwiękowych i THz.',
+        app_bio_title: 'Biofizyka i biologia systemowa:',
+        app_bio_li1: 'mapowanie „wibracyjnej homeostazy” tkanek,',
+        app_bio_li2: 'diagnostyka obrazowa oparta na złożoności D<sub>f</sub>,',
+        app_bio_li3: 'monitorowanie dynamiki struktur komórkowych.',
+        app_acoust_title: 'Akustyka i inżynieria dźwięku:',
+        app_acoust_li1: 'projektowanie komór akustycznych o zadanych właściwościach,',
+        app_acoust_li2: 'kontrolowane cymatyczne wizualizacje,',
+        app_acoust_li3: 'synteza dźwięku o określonej złożoności strukturalnej.',
+        app_astro_title: 'Astrofizyka i dynamika układów planetarnych:',
+        app_astro_li1: 'indeks rezonansów orbitalnych,',
+        app_astro_li2: 'klasyfikacja systemów planetarnych wg geometrii,',
+        app_astro_li3: 'modele fal grawitacyjnych w układach wielociałowych.',
+
+        faem3d_title: 'FAEM 3D – atlas fraktalnych energii materii',
+        faem3d_tag: 'Concept • 3D Atlas',
+        faem3d_p1: 'Kolejnym krokiem projektu jest <strong>FAEM 3D</strong> – interaktywny atlas prezentujący <em>β-Law</em> w przestrzeni 3D: od poziomu atomowego, przez struktury biofizyczne, aż po skale planetarne.',
+        faem3d_li1: '<strong>Warstwa mikro:</strong> widma molekularne, drgania sieci krystalicznych.',
+        faem3d_li2: '<strong>Warstwa mezo:</strong> modele domen rezonansowych, struktury tkanek.',
+        faem3d_li3: '<strong>Warstwa makro:</strong> rezonanse orbitalne, układy planetarne, wzorce grawitacyjne.',
+        faem3d_label_micro: 'Mikro – molekuły, sieci krystaliczne',
+        faem3d_label_mezo: 'Mezo – domeny rezonansowe, tkanki',
+        faem3d_label_macro: 'Makro – orbity, układy planetarne',
+        faem3d_caption: 'Schemat FAEM 3D: te same prawa skalowania β obowiązują na poziomie mikro, mezo i makro.',
+        faem3d_btn_micro: 'Mikro',
+        faem3d_btn_mezo: 'Mezo',
+        faem3d_btn_makro: 'Makro',
+        faem3d_rot_btn: 'Obrót ON/OFF',
+        faem3d_freq_label: 'Skala częstotliwości:',
+        faem3d_system_label: 'Przykładowy układ:',
+        faem3d_df_label: 'Zakres D<sub>f</sub> (wzorzec):',
+        faem3d_beta_label: 'β (orientacyjnie, z symulacji):',
+        faem3d_note: 'Wartości w panelu mają charakter poglądowy (symulacje numeryczne), a nie bezpośrednie dane pomiarowe.',
+
+        eq_toggle_text: 'Pokaż / ukryj panel równań β-Law',
+        eq_title: 'Równanie Prawa Fraktalnej Skalowalności Energetycznej (Prawo β)',
+        eq_p1: '<strong>D<sub>f</sub></strong> – wymiar fraktalny wzorca cymatycznego lub rezonansowego.<br /><strong>P<sub>Δω</sub></strong> – energia (moc) niskich modów częstotliwościowych w wybranym oknie Δω.<br /><strong>β</strong> – tempo, z jakim energia falowa przekształca się w złożoność geometryczną (logarytmiczna „sprawność kaskady”).',
+        eq_p2: 'W FAEM 2.3 otrzymujemy β ≈ 0.60 ± 0.10 dla danych syntetycznych i przekrojowych, stabilne względem parametrów analizy. Sugeruje to uniwersalny mechanizm skalowania mikro–mezo–makro.',
+
+        spectrum_title: 'Schematyczne widmo P<sub>Δω</sub> dla trzech skal (mikro, mezo, makro)',
+        spectrum_legend_micro: 'Mikro',
+        spectrum_legend_mezo: 'Mezo',
+        spectrum_legend_macro: 'Makro',
+        spectrum_caption: 'Widmo schematyczne: rzeczywiste kształty zależą od badanego układu, ale integracja P<sub>Δω</sub> zasila Prawo β.',
+
+        mode_title: 'Mode Explorer – od jednej fali do kaskady fraktalnej',
+        mode_subtitle: 'Symulowane morfologie przy 1–4 pobudzonych modach',
+        mode_btn1: '1 mod',
+        mode_btn2: '2 mody',
+        mode_btn3: '3 mody',
+        mode_btn4: '4 mody',
+
+        downloads_title: 'Monografia FAEM – pełny tekst',
+        downloads_tag: 'Full Text • PL + EN',
+        downloads_intro: 'Poniżej znajdziesz <strong>pełną monografię</strong> FAEM 2.3: w wersji PDF (PL/EN) hostowanej na GitHub Pages oraz jako preprint PDF w repozytorium Zenodo (z DOI).',
+        downloads_box_title: 'Wersje online i preprint:',
+        download_pl: '🇵🇱 Otwórz monografię PL (PDF)',
+        download_en: '🇬🇧 Open monograph EN (PDF)',
+        download_doi: '🔗 Preprint PDF (Zenodo, DOI)',
+        outline_title: 'Szkic struktury monografii (offline preview)',
+        outline_li1: '<strong>Wprowadzenie</strong> – motywacja, luka badawcza, definicja FAEM, zarys Prawa β.',
+        outline_li2: '<strong>Model FAEM</strong> – definicja P<sub>Δω</sub>, konstrukcja obrazów cymatycznych, algorytm D<sub>f</sub>.',
+        outline_li3: '<strong>Metody numeryczne</strong> – generacja danych syntetycznych, parametry symulacji, estymacja regresji.',
+        outline_li4: '<strong>Wyniki</strong> – wykresy D<sub>f</sub> vs P<sub>Δω</sub>, stabilność β, analizy wrażliwości.',
+        outline_li5: '<strong>Dyskusja</strong> – interpretacja β jako miary konwersji energia → geometria, ciągłość mikro–makro.',
+        outline_li6: '<strong>Znaczenie i zastosowania</strong> – materiały, biofizyka, akustyka, astrofizyka.',
+        outline_li7: '<strong>Wnioski</strong> – podsumowanie i kierunki dalszych badań (FAEM 3D, eksperymenty THz / cymatyka).',
+        outline_li8: '<strong>Aneks</strong> – definicje matematyczne, szczegóły algorytmów, dodatkowe wykresy β.',
+        outline_note: 'Wersje PDF są optymalne do czytania online i druku, a wersja z Zenodo jest przeznaczona do cytowania i archiwizacji (stabilny DOI).',
+        preview_btn: '👁 Pokaż / ukryj podgląd monografii (fragment PL)',
+        preview_title: 'Od atomu do planet: fraktalne Prawo β wibracji materii – fragment wprowadzenia',
+        preview_p1: 'W niniejszej pracy wprowadzamy <strong>Prawo Fraktalnej Skalowalności Energetycznej (Prawo β)</strong>, które łączy widmo niskich modów drganiowych z geometrią wzorów cymatycznych i rezonansowych. Celem jest zbudowanie mostu pomiędzy skalą mikro (drgania molekularne), mezo (struktury biofizyczne) i makro (modele rezonansów orbitalnych).',
+        preview_p2: 'Kluczowym wynikiem jest zaobserwowanie stabilnej zależności: <em>D<sub>f</sub> = A + B·log(P<sub>Δω</sub>)</em>, gdzie <em>β ≡ −B</em> przyjmuje wartość β ≈ 0.60 ± 0.10 w szerokim zakresie symulacji i konfiguracji. Interpretujemy β jako miarę „sprawności” kaskady, w której energia fal przechodzi w coraz bogatszą strukturę morfologiczną.',
+        preview_p3: 'Na poziomie metodycznym łączymy modelowanie syntetyczne (sumy fal radialnych), analizę widmową, przetwarzanie obrazu oraz estymację wymiaru fraktalnego. Pipeline FAEM 2.3 został zaprojektowany tak, aby był <strong>reprodukowalny</strong> i <strong>odporny na wybór parametrów</strong>, co pozwala traktować β-Law jako kandydaturę na uniwersalne prawo skalujące dla układów falowych.',
+        preview_p4: 'To jedynie fragment. Pełny tekst (rozdziały 1–7 oraz aneks) znajduje się w monografii PDF.',
+
+        contact_title: 'Kontakt',
+        contact_tag: 'Contact',
+        contact_p1: 'W sprawach związanych z projektem FAEM 2.3 / Fractal Vibration Lab możesz pisać na adres:',
+
+        footer_left: '© Fractal Vibration Lab — Astro_Katt • FAEM 2.3 β-Law',
+        footer_right: 'Kontakt: <a href="mailto:fractalvibrationlab@gmail.com">fractalvibrationlab@gmail.com</a>'
+      },
+      en: {
+        nav_start: 'Home',
+        nav_beta: 'β-Law',
+        nav_model: 'FAEM Model',
+        nav_results: 'Results',
+        nav_applications: 'Applications',
+        nav_faem3d: 'FAEM 3D',
+        nav_downloads: 'Monograph',
+        nav_contact: 'Contact',
+        chip_lab: 'Lab: <strong>Fractal Vibration Lab</strong>',
+
+        hero_kicker: 'From atoms to planets • FAEM β-Law',
+        hero_title: 'From atoms to planets:<br />the fractal <span class="beta">β</span>-Law of matter vibrations',
+        hero_subtitle: 'FAEM 2.3 (*Fractal Acoustic–Energy Mapping*) describes how the energy of low<br />vibrational modes transforms into complex geometric patterns – from crystal lattices,<br />through biophysical structures, up to orbital resonance models.',
+        badge_scaling: 'Log–log scaling D<sub>f</sub> vs P<sub>Δω</sub>',
+        badge_beta: 'β ≈ 0.60 ± 0.10',
+        badge_continuity: 'Continuity micro ↔ macro',
+        hero_btn_monografia: '📄 Open FAEM monograph',
+        hero_btn_faem3d: '🌌 Explore FAEM 3D concept',
+        hero_note: 'PL + EN • print & presentation version • Fractal Vibration Lab – Astro_Katt.',
+        hero_beta_label: 'β-Law – Astro_Katt<br /><span style="font-size:10px;">Df = A + B·log(P<sub>Δω</sub>), β = –B</span>',
+
+        beta_title: 'β-Law – in brief <span style="font-weight:400;font-size:0.9em;color:var(--accent-soft);"> • Astro_Katt β-Law</span>',
+        beta_tag: 'β-Law • Core Idea',
+        beta_p1: 'In FAEM 2.3 we introduce the <span class="faem-highlight">Fractal Energy Scaling Law</span> (β-Law), which relates the <strong>energy of low modes</strong> (P<sub>Δω</sub>) to the <strong>fractal dimension</strong> of the pattern (D<sub>f</sub>):',
+        beta_p2: 'β acts as a <strong>morphological constant</strong>: it tells how fast (on a logarithmic energy scale) new levels of geometric complexity appear.',
+        beta_li1: '<strong>β ≈ 0.60 ± 0.10</strong> – stable across synthetic and cross-sectional data.',
+        beta_li2: 'Applies to micro, meso and macro structures (molecules → biophysics → orbital resonances).',
+        beta_li3: 'Robust to binarization threshold, resolution and regression estimator.',
+        beta_li4: 'Generates <strong>falsifiable predictions</strong> for laboratory experiments.',
+
+        model_title: 'FAEM Model – Fractal Acoustic–Energy Mapping',
+        model_tag: 'Model • Methods',
+        model_p1: 'FAEM is a pipeline linking <strong>spectral data</strong> (Δω–power) with <strong>cymatic images</strong> and their <strong>fractal analysis</strong>. Synthetic data are generated from a sum of radial waves:',
+        model_p2: 'We then compute P<sub>Δω</sub> from the spectrum, binarize the image, estimate D<sub>f</sub> via box-counting and fit the log–log model.',
+        model_pipeline_title: 'FAEM pipeline:',
+        model_li1: 'Pattern generation (synthetic or experimental).',
+        model_li2: 'Spectral analysis → computation of P<sub>Δω</sub>.',
+        model_li3: 'Image processing → binary mask.',
+        model_li4: 'Estimation of D<sub>f</sub> (box-counting, ≥ 8 scales ε).',
+        model_li5: 'Regression log(D<sub>f</sub>) vs log(P<sub>Δω</sub>) → β.',
+        pill_boxcount: 'Box-counting',
+        pill_bootstrap: 'Bootstrap 10 000+',
+        pill_sensitivity: 'Sensitivity analysis',
+        pill_reproducible: 'Reproducible pipeline',
+
+        results_title: 'Results and significance',
+        results_tag: 'Results • Interpretation',
+        results_p1: 'Numerical analyses in FAEM 2.3 show a strong log–log correlation between D<sub>f</sub> and P<sub>Δω</sub> (R² ~ 0.6–0.8). β remains stable under parameter changes, suggesting that the β-Law reflects the <strong>actual structure of the wave phenomenon</strong>.',
+        results_p2: 'The results are consistent with earlier concepts:',
+        results_li1: 'fractal space-filling (Mandelbrot),',
+        results_li2: 'transition from simple to complex cymatic patterns (Jenny),',
+        results_li3: 'scale relativity in Nottale’s framework.',
+        table_head_dataset: 'Dataset',
+        table_head_n: 'N (samples)',
+        table_head_beta: 'β (mean ± SE)',
+        table_head_r2: 'R² (log–log)',
+        table_head_notes: 'Notes',
+        table_row1_dataset: 'Synthetic radial waves (FAEM 2.3)',
+        table_row1_n: '120',
+        table_row1_beta: '0.59 ± 0.04',
+        table_row1_r2: '0.82',
+        table_row1_notes: 'baseline model simulations',
+        table_row2_dataset: 'Quasi-biophysical configurations (gels / tissue phantoms)',
+        table_row2_n: '60',
+        table_row2_beta: '0.62 ± 0.07',
+        table_row2_r2: '0.71',
+        table_row2_notes: 'exploratory simulations for meso structures',
+        table_row3_dataset: 'Orbital systems (2:1, 3:2, 5:3 resonances)',
+        table_row3_n: '40',
+        table_row3_beta: '0.57 ± 0.09',
+        table_row3_r2: '0.63',
+        table_row3_notes: 'parametric models at macro scales',
+        results_note: 'All values are <strong>simulation-only</strong> and illustrate the stability of β in the FAEM 2.3 model; they are not direct laboratory measurements.',
+
+        applications_title: 'Applications of FAEM and the β-Law',
+        applications_tag: 'Applications',
+        app_mat_title: 'Materials science:',
+        app_mat_li1: 'indicator of energetic structure of materials,',
+        app_mat_li2: 'monitoring of aging and defects,',
+        app_mat_li3: 'analysis of ultrasonic and THz resonances.',
+        app_bio_title: 'Biophysics and systems biology:',
+        app_bio_li1: 'mapping of “vibrational homeostasis” in tissues,',
+        app_bio_li2: 'imaging diagnostics based on D<sub>f</sub> complexity,',
+        app_bio_li3: 'monitoring of cellular-structure dynamics.',
+        app_acoust_title: 'Acoustics and sound engineering:',
+        app_acoust_li1: 'design of acoustic chambers with tailored properties,',
+        app_acoust_li2: 'controlled cymatic visualizations,',
+        app_acoust_li3: 'sound synthesis with prescribed structural complexity.',
+        app_astro_title: 'Astrophysics and planetary-system dynamics:',
+        app_astro_li1: 'index of orbital resonances,',
+        app_astro_li2: 'classification of planetary systems by geometry,',
+        app_astro_li3: 'models of wave-like behaviour in multi-body systems.',
+
+        faem3d_title: 'FAEM 3D – atlas of fractal energy in matter',
+        faem3d_tag: 'Concept • 3D Atlas',
+        faem3d_p1: 'The next step of the project is <strong>FAEM 3D</strong> – an interactive atlas that presents the <em>β-Law</em> in 3D space: from atomic scale, through biophysical structures, up to planetary scales.',
+        faem3d_li1: '<strong>Micro layer:</strong> molecular spectra, lattice vibrations.',
+        faem3d_li2: '<strong>Meso layer:</strong> resonant domains, tissue structures.',
+        faem3d_li3: '<strong>Macro layer:</strong> orbital resonances, planetary systems, gravitational patterns.',
+        faem3d_label_micro: 'Micro – molecules, crystal lattices',
+        faem3d_label_mezo: 'Meso – resonant domains, tissues',
+        faem3d_label_macro: 'Macro – orbits, planetary systems',
+        faem3d_caption: 'FAEM 3D scheme: the same β scaling laws apply at micro, meso and macro levels.',
+        faem3d_btn_micro: 'Micro',
+        faem3d_btn_mezo: 'Meso',
+        faem3d_btn_makro: 'Macro',
+        faem3d_rot_btn: 'Rotation ON/OFF',
+        faem3d_freq_label: 'Frequency scale:',
+        faem3d_system_label: 'Example system:',
+        faem3d_df_label: 'Df range (pattern):',
+        faem3d_beta_label: 'β (illustrative, from simulations):',
+        faem3d_note: 'Values in this panel are illustrative (numerical simulations), not direct measurement data.',
+
+        eq_toggle_text: 'Show / hide β-Law equations panel',
+        eq_title: 'Fractal Energy Scaling Law (β-Law) equation',
+        eq_p1: '<strong>D<sub>f</sub></strong> – fractal dimension of the cymatic or resonant pattern.<br /><strong>P<sub>Δω</sub></strong> – energy (power) of low-frequency modes in the selected window Δω.<br /><strong>β</strong> – rate at which wave energy turns into geometric complexity (logarithmic “cascade efficiency”).',
+        eq_p2: 'In FAEM 2.3 we obtain β ≈ 0.60 ± 0.10 for synthetic and cross-sectional data, stable with respect to analysis parameters. This suggests a universal micro–meso–macro scaling mechanism.',
+
+        spectrum_title: 'Schematic P<sub>Δω</sub> spectrum for three scales (micro, meso, macro)',
+        spectrum_legend_micro: 'Micro',
+        spectrum_legend_mezo: 'Meso',
+        spectrum_legend_macro: 'Macro',
+        spectrum_caption: 'Schematic spectrum: actual shapes depend on the system, but the integrated P<sub>Δω</sub> feeds the β-Law.',
+
+        mode_title: 'Mode Explorer – from a single wave to a fractal cascade',
+        mode_subtitle: 'Simulated morphologies for 1–4 excited modes',
+        mode_btn1: '1 mode',
+        mode_btn2: '2 modes',
+        mode_btn3: '3 modes',
+        mode_btn4: '4 modes',
+
+        downloads_title: 'FAEM monograph – full text',
+        downloads_tag: 'Full Text • PL + EN',
+        downloads_intro: 'Below you can access the <strong>full FAEM 2.3 monograph</strong>: as PDF (PL/EN) hosted on GitHub Pages, and as a preprint PDF on Zenodo (with DOI).',
+        downloads_box_title: 'Online versions and preprint:',
+        download_pl: '🇵🇱 Open monograph PL (PDF)',
+        download_en: '🇬🇧 Open monograph EN (PDF)',
+        download_doi: '🔗 Preprint PDF (Zenodo, DOI)',
+        outline_title: 'Monograph structure sketch (offline preview)',
+        outline_li1: '<strong>Introduction</strong> – motivation, research gap, FAEM definition, overview of the β-Law.',
+        outline_li2: '<strong>FAEM model</strong> – definition of P<sub>Δω</sub>, construction of cymatic images, D<sub>f</sub> algorithm.',
+        outline_li3: '<strong>Numerical methods</strong> – synthetic data generation, simulation parameters, regression estimation.',
+        outline_li4: '<strong>Results</strong> – D<sub>f</sub> vs P<sub>Δω</sub> plots, β stability, sensitivity analyses.',
+        outline_li5: '<strong>Discussion</strong> – interpretation of β as energy → geometry conversion measure, micro–macro continuity.',
+        outline_li6: '<strong>Significance and applications</strong> – materials, biophysics, acoustics, astrophysics.',
+        outline_li7: '<strong>Conclusions</strong> – summary and future directions (FAEM 3D, THz / cymatics experiments).',
+        outline_li8: '<strong>Appendix</strong> – mathematical definitions, algorithmic details, additional β plots.',
+        outline_note: 'PDF versions are optimal for online reading and printing; the Zenodo version is intended for citation and long-term archiving (stable DOI).',
+        preview_btn: '👁 Show / hide monograph preview (PL fragment)',
+        preview_title: 'From atom to planets: fractal β-Law of matter vibrations – introduction fragment',
+        preview_p1: 'In this work we introduce the <strong>Fractal Energy Scaling Law (β-Law)</strong>, which links the spectrum of low vibrational modes with the geometry of cymatic and resonant patterns. The goal is to build a bridge between the micro scale (molecular vibrations), meso scale (biophysical structures) and macro scale (orbital resonance models).',
+        preview_p2: 'The key result is a stable relation: <em>D<sub>f</sub> = A + B·log(P<sub>Δω</sub>)</em>, where <em>β ≡ −B</em> takes values around β ≈ 0.60 ± 0.10 across a wide range of simulations and configurations. We interpret β as a measure of the “efficiency” of the cascade in which wave energy becomes increasingly rich morphological structure.',
+        preview_p3: 'On the methodological level we combine synthetic modelling (sums of radial waves), spectral analysis, image processing and fractal-dimension estimation. The FAEM 2.3 pipeline was designed to be <strong>reproducible</strong> and <strong>robust to parameter choices</strong>, which allows treating the β-Law as a candidate universal scaling law for wave systems.',
+        preview_p4: 'This is only a short fragment. The full text (chapters 1–7 plus appendix) is provided in the PDF monograph.',
+
+        contact_title: 'Contact',
+        contact_tag: 'Contact',
+        contact_p1: 'For matters related to the FAEM 2.3 project / Fractal Vibration Lab, you can write to:',
+
+        footer_left: '© Fractal Vibration Lab — Astro_Katt • FAEM 2.3 β-Law',
+        footer_right: 'Contact: <a href="mailto:fractalvibrationlab@gmail.com">fractalvibrationlab@gmail.com</a>'
+      }
+    };
+
+    function applyLanguage(lang) {
+      const dict = i18n[lang];
+      if (!dict) return;
+      currentLang = lang;
+
+      // Zmiana lang w <html>
+      document.documentElement.lang = lang;
+
+      // Ustawienie tekstów z data-i18n
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (dict[key]) {
+          el.innerHTML = dict[key];
+        }
+      });
+
+      // Aktywność przycisków językowych
+      langButtons.forEach(btn => {
+        btn.classList.toggle('faem-lang-active', btn.dataset.lang === lang);
+      });
+
+      // Aktualizacja FAEM 3D dla bieżącej skali
+      activateScale(currentScale);
+
+      // Aktualizacja opisów Mode Explorer
+      setMode(currentMode);
+    }
+
+    langButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const lang = btn.dataset.lang;
+        if (lang && lang !== currentLang) {
+          applyLanguage(lang);
+        }
+      });
+    });
+
+    // Stan startowy – PL
+    applyLanguage('pl');
   </script>
 </body>
 </html>
