@@ -1104,7 +1104,7 @@
       background: rgba(8,5,30,0.95);
       color: var(--text-muted);
       cursor: pointer;
-      transition: background 0.2s ease, border-color 0.2s.ease, color 0.2s ease, box-shadow 0.2s ease;
+      transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
     }
 
     .faem-preview-btn:hover {
@@ -1234,6 +1234,7 @@
       }
     }
 
+    /* PODKREŚLENIE NAGŁÓWKÓW SEKcji */
     .faem-section-title::after {
       content: "";
       display: block;
@@ -1277,6 +1278,8 @@
             <a href="#applications" class="faem-nav-link">Zastosowania</a>
             <a href="#faem3d" class="faem-nav-link">FAEM 3D</a>
             <a href="#downloads" class="faem-nav-link">Monografia</a>
+            <!-- NOWA ZAKŁADKA KONTAKT -->
+            <a href="#contact" class="faem-nav-link">Kontakt</a>
           </div>
           <div class="faem-chip">
             Lab: <strong>Fractal Vibration Lab</strong>
@@ -1665,28 +1668,34 @@
               </linearGradient>
             </defs>
 
+            <!-- Tło -->
             <rect x="0" y="0" width="260" height="120" fill="#050318" />
+            <!-- Osie -->
             <line x1="30" y1="90" x2="240" y2="90" stroke="#8f84c2" stroke-width="0.8" />
             <line x1="30" y1="20" x2="30" y2="90" stroke="#8f84c2" stroke-width="0.8" />
             <text x="235" y="104" fill="#bfb8ff" font-size="9">log ω</text>
             <text x="10" y="24" fill="#bfb8ff" font-size="9" transform="rotate(-90 10 24)">P(Δω)</text>
 
+            <!-- Mikro -->
             <path d="M30 80 C 60 30, 90 35, 120 70"
                   fill="none"
                   stroke="url(#microGrad)"
                   stroke-width="1.4"
                   class="faem-spectrum-line" />
+            <!-- Mezo -->
             <path d="M60 88 C 105 70, 140 40, 190 50"
                   fill="none"
                   stroke="url(#mesoGrad)"
                   stroke-width="1.4"
                   class="faem-spectrum-line" />
+            <!-- Makro -->
             <path d="M110 92 C 150 88, 190 78, 230 65"
                   fill="none"
                   stroke="url(#macroGrad)"
                   stroke-width="1.4"
                   class="faem-spectrum-line" />
 
+            <!-- Legendy -->
             <rect x="34" y="12" width="8" height="2" fill="url(#microGrad)" />
             <text x="46" y="14.5" fill="#e9e4ff" font-size="9">Mikro</text>
 
@@ -1734,7 +1743,7 @@
         </div>
         <p>
           Poniżej znajdziesz <strong>pełną monografię</strong> FAEM 2.3:
-          w wersji PDF (PL/EN) oraz jako preprint PDF w repozytorium Zenodo (z DOI).
+          w wersji HTML (PL/EN) hostowanej na GitHub Pages oraz jako preprint PDF w repozytorium Zenodo (z DOI).
         </p>
         <div class="faem-download-box">
           <p>
@@ -1772,7 +1781,8 @@
             <li><strong>Aneks</strong> – definicje matematyczne, szczegóły algorytmów, dodatkowe wykresy β.</li>
           </ol>
           <p style="margin-top:6px;font-size:12px;">
-            Wersje PDF są optymalne do druku i cytowania; wersja Zenodo zapewnia stabilny DOI i archiwizację.
+            Wersje PDF są optymalne do czytania online i druku, a wersja z Zenodo jest przeznaczona do cytowania
+            i archiwizacji (stabilny DOI).
           </p>
         </div>
 
@@ -1802,16 +1812,28 @@
             jako kandydaturę na uniwersalne prawo skalujące dla układów falowych.
           </p>
           <p style="font-size:12px;opacity:0.8;">
-            To jedynie fragment. Pełny tekst (rozdziały 1–7 oraz aneks) znajduje się w monografii PDF
-            <em>Od_atomu_do_planet_Prawo_Beta_FULL_PL_DARK.pdf</em>.
+            To jedynie fragment. Pełny tekst (rozdziały 1–7 oraz aneks) znajduje się w monografii PDF.
           </p>
         </div>
       </section>
 
+      <!-- NOWA SEKCJA KONTAKT -->
+      <section class="faem-section" id="contact">
+        <div class="faem-section-header">
+          <h2 class="faem-section-title">Kontakt</h2>
+          <div class="faem-section-tag">Contact</div>
+        </div>
+        <p>
+          W sprawach związanych z projektem FAEM 2.3 / Fractal Vibration Lab możesz pisać na adres:
+        </p>
+        <p>
+          <a href="mailto:fractalvibrationlab@gmail.com">fractalvibrationlab@gmail.com</a>
+        </p>
+      </section>
+
       <footer class="faem-footer">
         <span>© Fractal Vibration Lab — Astro_Katt • FAEM 2.3 β-Law</span>
-        <span>Kontakt: fractalvibrationlab@gmail.com</span>
-        <span>„Wibracja jest pierwszym językiem wszechświata.”</span>
+        <span>Kontakt: <a href="mailto:fractalvibrationlab@gmail.com">fractalvibrationlab@gmail.com</a></span>
       </footer>
     </div>
 
@@ -1855,6 +1877,7 @@
       makro: 'Makro: orbity i układy planetarne – duże skale, gdzie geometryczne skutki sumowania fal stają się globalnym wzorcem.'
     };
 
+    // Dane orientacyjne z symulacji – nie dane pomiarowe
     const scaleData = {
       micro: {
         freq: '10¹²–10¹⁴ Hz (THz, drgania sieciowe)',
@@ -1922,6 +1945,7 @@
       });
     });
 
+    // ROTACJA – auto + myszka + zoom
     let rotationOn = true;
     let orbitAngle = 0;
     let baseRotX = 22;
@@ -1957,6 +1981,7 @@
       }
     });
 
+    // Drag-rotate (mysz)
     let isDragging = false;
     let lastX = 0;
     let lastY = 0;
@@ -1986,10 +2011,12 @@
       orbit.style.cursor = 'grab';
     }
 
+    // Mysza
     orbit.addEventListener('mousedown', onPointerDown);
     window.addEventListener('mousemove', onPointerMove);
     window.addEventListener('mouseup', onPointerUp);
 
+    // Dotyk
     orbit.addEventListener('touchstart', (e) => {
       const t = e.touches[0];
       onPointerDown({ clientX: t.clientX, clientY: t.clientY });
@@ -2004,6 +2031,7 @@
     orbit.addEventListener('touchend', onPointerUp);
     orbit.addEventListener('touchcancel', onPointerUp);
 
+    // Zoom scroll kółkiem
     orbit.addEventListener('wheel', (e) => {
       e.preventDefault();
       const delta = e.deltaY;
@@ -2013,9 +2041,11 @@
       applyOrbitTransform();
     }, { passive: false });
 
+    // stan startowy FAEM 3D
     activateScale('micro');
     applyOrbitTransform();
 
+    // Panel równań β
     const eqBtn = document.getElementById('faemEqToggle');
     const eqPanel = document.getElementById('faemEqPanel');
     let eqOpen = false;
@@ -2027,6 +2057,7 @@
       });
     }
 
+    // Mode Explorer
     const modeBtns = document.querySelectorAll('.faem-mode-btn');
     const modeDesc = document.getElementById('faemModeDesc');
     const modeBox = document.getElementById('faemModeBox');
@@ -2056,8 +2087,10 @@
         setMode(m);
       });
     });
+    // stan startowy Mode Explorer
     setMode(1);
 
+    // Podgląd monografii
     const prevBtn = document.getElementById('faemPreviewBtn');
     const prevPanel = document.getElementById('faemPreview');
     let prevOpen = false;
