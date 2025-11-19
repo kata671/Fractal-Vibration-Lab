@@ -183,7 +183,6 @@
       border: 1px solid transparent;
       background: transparent;
       transition: background var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
-      white-space: nowrap;
     }
 
     .faem-nav-link:hover {
@@ -407,6 +406,7 @@
       to   { transform: rotate(360deg); }
     }
 
+    /* SEKCJE */
     .faem-section {
       background: var(--bg-card);
       border-radius: var(--radius-xl);
@@ -519,6 +519,7 @@
       color: var(--accent-soft);
     }
 
+    /* FAEM 3D advanced diagram */
     .faem-3d-diagram {
       margin-top: 14px;
       display: flex;
@@ -676,6 +677,7 @@
       50%      { box-shadow: 0 0 44px rgba(255,141,225,1), 0 0 80px rgba(179,140,255,1); }
     }
 
+    /* FAEM 3D – przyciski + panel danych */
     .faem-3d-controls {
       margin-top: 10px;
       display: flex;
@@ -795,6 +797,7 @@
       opacity: 0.7;
     }
 
+    /* Panel równań β-Law */
     .faem-eq-toggle {
       margin-top: 12px;
       display: flex;
@@ -858,6 +861,7 @@
       margin-top: 4px;
     }
 
+    /* Mini widmo PΔω */
     .faem-spectrum-wrapper {
       margin-top: 10px;
       border-radius: 16px;
@@ -897,6 +901,7 @@
       to   { stroke-dashoffset: -260; }
     }
 
+    /* Mode Explorer */
     .faem-mode-explorer {
       margin-top: 12px;
       border-radius: 18px;
@@ -1019,6 +1024,7 @@
       box-shadow: 0 10px 24px rgba(0,0,0,0.8);
     }
 
+    /* Monografia */
     .faem-download-box {
       border-radius: var(--radius-xl);
       border: 1px dashed rgba(255,255,255,0.25);
@@ -1130,6 +1136,7 @@
       margin-bottom: 6px;
     }
 
+    /* TABELA WYNIKÓW */
     .faem-results-table-wrapper {
       margin-top: 8px;
       border-radius: 14px;
@@ -1227,6 +1234,7 @@
       }
     }
 
+    /* PODKREŚLENIE NAGŁÓWKÓW SEKcji */
     .faem-section-title::after {
       content: "";
       display: block;
@@ -1268,9 +1276,10 @@
             <a href="#model" class="faem-nav-link">Model FAEM</a>
             <a href="#results" class="faem-nav-link">Wyniki</a>
             <a href="#applications" class="faem-nav-link">Zastosowania</a>
-            <a href="faem3d.html" class="faem-nav-link" target="_blank" rel="noopener">FAEM 3D</a>
+            <a href="#faem3d" class="faem-nav-link">FAEM 3D</a>
             <a href="#downloads" class="faem-nav-link">Monografia</a>
-            <a href="contact.html" class="faem-nav-link" target="_blank" rel="noopener">Kontakt</a>
+            <!-- NOWA ZAKŁADKA KONTAKT -->
+            <a href="#contact" class="faem-nav-link">Kontakt</a>
           </div>
           <div class="faem-chip">
             Lab: <strong>Fractal Vibration Lab</strong>
@@ -1282,6 +1291,7 @@
     <div class="faem-shell">
       <div id="top"></div>
 
+      <!-- HERO -->
       <section class="faem-main-card">
         <div class="faem-main-inner">
           <div>
@@ -1344,6 +1354,7 @@
         </div>
       </section>
 
+      <!-- Prawo β -->
       <section class="faem-section" id="beta-law">
         <div class="faem-section-header">
           <h2 class="faem-section-title">
@@ -1381,6 +1392,7 @@
         </div>
       </section>
 
+      <!-- Model -->
       <section class="faem-section" id="model">
         <div class="faem-section-header">
           <h2 class="faem-section-title">Model FAEM – Fractal Acoustic–Energy Mapping</h2>
@@ -1419,6 +1431,7 @@
         </div>
       </section>
 
+      <!-- Wyniki -->
       <section class="faem-section" id="results">
         <div class="faem-section-header">
           <h2 class="faem-section-title">Wyniki i znaczenie</h2>
@@ -1444,6 +1457,7 @@
           </div>
         </div>
 
+        <!-- Tabela wyników β -->
         <div class="faem-results-table-wrapper">
           <table class="faem-results-table">
             <thead>
@@ -1486,6 +1500,7 @@
         </div>
       </section>
 
+      <!-- Zastosowania -->
       <section class="faem-section" id="applications">
         <div class="faem-section-header">
           <h2 class="faem-section-title">Zastosowania FAEM i Prawa β</h2>
@@ -1523,6 +1538,7 @@
         </div>
       </section>
 
+      <!-- FAEM 3D -->
       <section class="faem-section" id="faem3d">
         <div class="faem-section-header">
           <h2 class="faem-section-title">FAEM 3D – atlas fraktalnych energii materii</h2>
@@ -1606,6 +1622,7 @@
           </div>
         </div>
 
+        <!-- Panel równań β-Law -->
         <div class="faem-eq-toggle">
           <button class="faem-eq-btn" id="faemEqToggle">
             <span class="icon">▼</span>
@@ -1630,6 +1647,7 @@
           </p>
         </div>
 
+        <!-- Mini widmo PΔω -->
         <div class="faem-spectrum-wrapper">
           <div class="faem-spectrum-title">
             Schematyczne widmo P<sub>Δω</sub> dla trzech skal (mikro, mezo, makro)
@@ -1650,28 +1668,34 @@
               </linearGradient>
             </defs>
 
+            <!-- Tło -->
             <rect x="0" y="0" width="260" height="120" fill="#050318" />
+            <!-- Osie -->
             <line x1="30" y1="90" x2="240" y2="90" stroke="#8f84c2" stroke-width="0.8" />
             <line x1="30" y1="20" x2="30" y2="90" stroke="#8f84c2" stroke-width="0.8" />
             <text x="235" y="104" fill="#bfb8ff" font-size="9">log ω</text>
             <text x="10" y="24" fill="#bfb8ff" font-size="9" transform="rotate(-90 10 24)">P(Δω)</text>
 
+            <!-- Mikro -->
             <path d="M30 80 C 60 30, 90 35, 120 70"
                   fill="none"
                   stroke="url(#microGrad)"
                   stroke-width="1.4"
                   class="faem-spectrum-line" />
+            <!-- Mezo -->
             <path d="M60 88 C 105 70, 140 40, 190 50"
                   fill="none"
                   stroke="url(#mesoGrad)"
                   stroke-width="1.4"
                   class="faem-spectrum-line" />
+            <!-- Makro -->
             <path d="M110 92 C 150 88, 190 78, 230 65"
                   fill="none"
                   stroke="url(#macroGrad)"
                   stroke-width="1.4"
                   class="faem-spectrum-line" />
 
+            <!-- Legendy -->
             <rect x="34" y="12" width="8" height="2" fill="url(#microGrad)" />
             <text x="46" y="14.5" fill="#e9e4ff" font-size="9">Mikro</text>
 
@@ -1686,6 +1710,7 @@
           </div>
         </div>
 
+        <!-- Mode Explorer -->
         <div class="faem-mode-explorer">
           <div class="faem-mode-header">
             <strong>Mode Explorer – od jednej fali do kaskady fraktalnej</strong>
@@ -1710,6 +1735,7 @@
 
       </section>
 
+      <!-- Monografia -->
       <section class="faem-section" id="downloads">
         <div class="faem-section-header">
           <h2 class="faem-section-title">Monografia FAEM – pełny tekst</h2>
@@ -1717,7 +1743,7 @@
         </div>
         <p>
           Poniżej znajdziesz <strong>pełną monografię</strong> FAEM 2.3:
-          w wersji PDF (PL/EN) hostowanej na GitHub Pages oraz jako preprint PDF w repozytorium Zenodo (z DOI).
+          w wersji HTML (PL/EN) hostowanej na GitHub Pages oraz jako preprint PDF w repozytorium Zenodo (z DOI).
         </p>
         <div class="faem-download-box">
           <p>
@@ -1727,12 +1753,12 @@
             <a class="faem-monografia-link"
                href="Od_atomu_do_planet_Prawo_Beta_FULL_PL_DARK.pdf"
                target="_blank" rel="noopener">
-              🇵🇱 Monografia PL (PDF)
+              🇵🇱 Otwórz monografię PL (PDF)
             </a>
             <a class="faem-monografia-link"
                href="From_atom_to_planets_BetaLaw_FULL_EN_DARK.pdf"
                target="_blank" rel="noopener">
-              🇬🇧 Monograph EN (PDF)
+              🇬🇧 Open monograph EN (PDF)
             </a>
             <a class="faem-monografia-link"
                href="https://doi.org/10.5281/zenodo.17635753"
@@ -1755,7 +1781,8 @@
             <li><strong>Aneks</strong> – definicje matematyczne, szczegóły algorytmów, dodatkowe wykresy β.</li>
           </ol>
           <p style="margin-top:6px;font-size:12px;">
-            Wersje PDF są optymalne do czytania online i do cytowania, wersja Zenodo posiada stabilny DOI.
+            Wersje PDF są optymalne do czytania online i druku, a wersja z Zenodo jest przeznaczona do cytowania
+            i archiwizacji (stabilny DOI).
           </p>
         </div>
 
@@ -1785,9 +1812,23 @@
             jako kandydaturę na uniwersalne prawo skalujące dla układów falowych.
           </p>
           <p style="font-size:12px;opacity:0.8;">
-            To jedynie fragment. Pełny tekst (rozdziały 1–7 oraz aneks) znajduje się w plikach PDF monografii.
+            To jedynie fragment. Pełny tekst (rozdziały 1–7 oraz aneks) znajduje się w monografii PDF.
           </p>
         </div>
+      </section>
+
+      <!-- NOWA SEKCJA KONTAKT -->
+      <section class="faem-section" id="contact">
+        <div class="faem-section-header">
+          <h2 class="faem-section-title">Kontakt</h2>
+          <div class="faem-section-tag">Contact</div>
+        </div>
+        <p>
+          W sprawach związanych z projektem FAEM 2.3 / Fractal Vibration Lab możesz pisać na adres:
+        </p>
+        <p>
+          <a href="mailto:fractalvibrationlab@gmail.com">fractalvibrationlab@gmail.com</a>
+        </p>
       </section>
 
       <footer class="faem-footer">
@@ -1802,6 +1843,7 @@
   </div>
 
   <script>
+    // Back to top
     const backBtn = document.getElementById('faemBackToTop');
     window.addEventListener('scroll', () => {
       if (window.scrollY > 200) {
@@ -1814,6 +1856,7 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
+    // FAEM 3D interakcje
     const orbit = document.getElementById('faem3dOrbit');
     const microRing = document.getElementById('faem3dMicro');
     const mesoRing = document.getElementById('faem3dMeso');
@@ -1834,6 +1877,7 @@
       makro: 'Makro: orbity i układy planetarne – duże skale, gdzie geometryczne skutki sumowania fal stają się globalnym wzorcem.'
     };
 
+    // Dane orientacyjne z symulacji – nie dane pomiarowe
     const scaleData = {
       micro: {
         freq: '10¹²–10¹⁴ Hz (THz, drgania sieciowe)',
@@ -1901,6 +1945,7 @@
       });
     });
 
+    // ROTACJA – auto + myszka + zoom
     let rotationOn = true;
     let orbitAngle = 0;
     let baseRotX = 22;
@@ -1936,6 +1981,7 @@
       }
     });
 
+    // Drag-rotate (mysz)
     let isDragging = false;
     let lastX = 0;
     let lastY = 0;
@@ -1965,35 +2011,41 @@
       orbit.style.cursor = 'grab';
     }
 
-    if (orbit) {
-      orbit.addEventListener('mousedown', onPointerDown);
-      window.addEventListener('mousemove', onPointerMove);
-      window.addEventListener('mouseup', onPointerUp);
+    // Mysza
+    orbit.addEventListener('mousedown', onPointerDown);
+    window.addEventListener('mousemove', onPointerMove);
+    window.addEventListener('mouseup', onPointerUp);
 
-      orbit.addEventListener('touchstart', (e) => {
-        const t = e.touches[0];
-        onPointerDown({ clientX: t.clientX, clientY: t.clientY });
-      }, { passive: true });
+    // Dotyk
+    orbit.addEventListener('touchstart', (e) => {
+      const t = e.touches[0];
+      onPointerDown({ clientX: t.clientX, clientY: t.clientY });
+    }, { passive: true });
 
-      orbit.addEventListener('touchmove', (e) => {
-        if (!isDragging) return;
-        const t = e.touches[0];
-        onPointerMove({ clientX: t.clientX, clientY: t.clientY });
-      }, { passive: true });
+    orbit.addEventListener('touchmove', (e) => {
+      if (!isDragging) return;
+      const t = e.touches[0];
+      onPointerMove({ clientX: t.clientX, clientY: t.clientY });
+    }, { passive: true });
 
-      orbit.addEventListener('touchend', onPointerUp);
-      orbit.addEventListener('touchcancel', onPointerUp);
+    orbit.addEventListener('touchend', onPointerUp);
+    orbit.addEventListener('touchcancel', onPointerUp);
 
-      orbit.addEventListener('wheel', (e) => {
-        e.preventDefault();
-        const delta = e.deltaY;
-        scaleOrbit -= delta * 0.001;
-        if (scaleOrbit < 0.8) scaleOrbit = 0.8;
-        if (scaleOrbit > 1.3) scaleOrbit = 1.3;
-        applyOrbitTransform();
-      }, { passive: false });
-    }
+    // Zoom scroll kółkiem
+    orbit.addEventListener('wheel', (e) => {
+      e.preventDefault();
+      const delta = e.deltaY;
+      scaleOrbit -= delta * 0.001;
+      if (scaleOrbit < 0.8) scaleOrbit = 0.8;
+      if (scaleOrbit > 1.3) scaleOrbit = 1.3;
+      applyOrbitTransform();
+    }, { passive: false });
 
+    // stan startowy FAEM 3D
+    activateScale('micro');
+    applyOrbitTransform();
+
+    // Panel równań β
     const eqBtn = document.getElementById('faemEqToggle');
     const eqPanel = document.getElementById('faemEqPanel');
     let eqOpen = false;
@@ -2005,6 +2057,7 @@
       });
     }
 
+    // Mode Explorer
     const modeBtns = document.querySelectorAll('.faem-mode-btn');
     const modeDesc = document.getElementById('faemModeDesc');
     const modeBox = document.getElementById('faemModeBox');
@@ -2034,8 +2087,10 @@
         setMode(m);
       });
     });
+    // stan startowy Mode Explorer
     setMode(1);
 
+    // Podgląd monografii
     const prevBtn = document.getElementById('faemPreviewBtn');
     const prevPanel = document.getElementById('faemPreview');
     let prevOpen = false;
@@ -2045,9 +2100,6 @@
         prevPanel.style.display = prevOpen ? 'block' : 'none';
       });
     }
-
-    activateScale('micro');
-    applyOrbitTransform();
   </script>
 </body>
 </html>
